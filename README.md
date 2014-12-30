@@ -6,4 +6,4 @@ http://livroandroid.com.br/
 
 Para configurar o projeto adicionar no app/build.gradle
 
-compile 'br.com.livroandroid:android-utils:0.0.3'
+<b>compile 'br.com.livroandroid:android-utils:0.0.3'</b>
