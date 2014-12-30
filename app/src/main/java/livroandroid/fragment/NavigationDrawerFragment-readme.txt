@@ -66,31 +66,16 @@ public class MainActivity extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
-    public void onSectionAttached(int number) {
-        Log.d("livroandroid", "onSectionAttached: " + number);
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.title_section1);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
-        }
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (mNavigationDrawerFragment.isDrawerOpen()) {
             // Menu aberto, seta o título do app e mostra menu global
-            getMenuInflater().inflate(R.menu.global, menu);
+            // getMenuInflater().inflate(R.menu.global, menu);
             mNavigationDrawerFragment.setActionBarTitle(R.string.app_name);
             return true;
         } else {
             // Menu fechado, seta o título do menu selecionado
-//            getMenuInflater().inflate(R.menu.main, menu);
+            // getMenuInflater().inflate(R.menu.main, menu);
             mNavigationDrawerFragment.setActionBarTitle(mTitle);
             return super.onCreateOptionsMenu(menu);
         }
@@ -100,9 +85,9 @@ public class MainActivity extends ActionBarActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -118,24 +103,22 @@ public class MainActivity extends ActionBarActivity
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1,
                 new String[]{
-                        getString(R.string.title_section1),
-                        getString(R.string.title_section2),
-                        getString(R.string.title_section3),
+                        "Menu 1",
+                        "Menu 2",
+                        "Menu 3",
                 });
     }
 
     @Override
     public ListView getNavDrawerListView(LayoutInflater inflater, ViewGroup container) {
         ListView listView = (ListView) inflater.inflate(R.layout.navigation_drawer, container, false);
+
         return listView;
     }
 
     @Override
     public void onNavDrawerItemSelected(int position) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment frag = PlaceholderFragment.newInstance(position + 1);
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, frag)
-                .commit();
+        Log.d("livroandroid", "Clicou: " + position);
+        Toast.makeText(this,"Clicou: " + position,Toast.LENGTH_SHORT).show();
     }
 }
