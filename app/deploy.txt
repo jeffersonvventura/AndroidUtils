@@ -23,7 +23,9 @@ https://oss.sonatype.org/content/repositories/snapshots/br/com/livroandroid/andr
 ------------------------------------------
 
 1) Primeira vez
+
 http://central.sonatype.org/pages/ossrh-guide.html
-https://oss.sonatype.org/#stagingRepositories
 http://central.sonatype.org/pages/releasing-the-deployment.html
+
+https://oss.sonatype.org/#stagingRepositories
 
