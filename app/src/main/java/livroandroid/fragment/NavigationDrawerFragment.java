@@ -27,6 +27,8 @@ import br.com.livroandroid.androidutils.R;
  * Fragment used for managing interactions for and presentation of a navigation drawer.
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
+ *
+ *
  */
 public class NavigationDrawerFragment extends Fragment {
 
@@ -45,6 +47,7 @@ public class NavigationDrawerFragment extends Fragment {
      * A pointer to the current callbacks instance (the Activity).
      */
     private NavigationDrawerCallbacks mCallbacks;
+    private NavigationDrawerCallbacks mCallbackTitle;
 
     /**
      * Helper component that ties the action bar to the navigation drawer.
@@ -207,6 +210,7 @@ public class NavigationDrawerFragment extends Fragment {
         } catch (ClassCastException e) {
             throw new ClassCastException("Activity must implement NavigationDrawerCallbacks.");
         }
+
     }
 
     @Override
@@ -237,7 +241,7 @@ public class NavigationDrawerFragment extends Fragment {
                 //inflater.inflate(R.menu.global, menu);
 //                mCallbacks.inflateGlobalMenu();
             }
-            showGlobalContextActionBar();
+            //showGlobalContextActionBar();
         }
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -251,15 +255,15 @@ public class NavigationDrawerFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Per the navigation drawer design guidelines, updates the action bar to show the global app
-     * 'context', rather than just what's in the current screen.
-     */
-    private void showGlobalContextActionBar() {
+    public void setActionBarTitle(int title) {
+        setActionBarTitle(getString(title));
+    }
+
+    public void setActionBarTitle(CharSequence title) {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setTitle(R.string.app_name);
+        actionBar.setTitle(title);
     }
 
     private ActionBar getActionBar() {
@@ -286,5 +290,9 @@ public class NavigationDrawerFragment extends Fragment {
         ListAdapter getNavDrawerListAdapter();
 
         ListView getNavDrawerListView(LayoutInflater inflater, ViewGroup container);
+    }
+
+    public static interface NavigationDrawerTitleCallbacks {
+        void changeActionBarTitle(String title);
     }
 }
