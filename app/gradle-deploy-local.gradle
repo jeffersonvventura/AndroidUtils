@@ -1,0 +1,20 @@
+/*
+ * Copyright 2014 Ricardo Lecheta
+ *
+ * Faz deploy no repositório local
+ */
+
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file:////home/ricardo/gradle/rep")
+
+            pom.groupId = GROUP
+            pom.artifactId = POM_ARTIFACT_ID
+            pom.version = VERSION_NAME
+        }
+    }
+}
+task install(dependsOn: uploadArchives)

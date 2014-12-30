@@ -1,0 +1,29 @@
+1) Enviar build pro Maven Central
+gradlew clean build uploadArchives
+ou
+gradle clean build uploadArchives
+
+2) Configurar usuario e senha
+~/users/.gradle/gradle.properties
+
+NEXUS_USERNAME=xxx
+NEXUS_PASSWORD=***
+
+signing.keyId=my key id
+signing.password=key password
+signing.secretKeyRingFile=gpg file
+
+3) Repositórios
+
+https://oss.sonatype.org/content/groups/public/br/com/livroandroid/android-utils/
+https://oss.sonatype.org/content/groups/staging/br/com/livroandroid/android-utils/
+https://oss.sonatype.org/content/repositories/releases/br/com/livroandroid/android-utils/
+https://oss.sonatype.org/content/repositories/snapshots/br/com/livroandroid/android-utils/
+
+------------------------------------------
+
+1) Primeira vez
+http://central.sonatype.org/pages/ossrh-guide.html
+https://oss.sonatype.org/#stagingRepositories
+http://central.sonatype.org/pages/releasing-the-deployment.html
+
