@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- Conteúdo -->
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
     <!-- Lista Menu Lateral -->
     <fragment
         android:id="@+id/navigation_drawer"
@@ -14,17 +21,23 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:name="livroandroid.fragment.NavigationDrawerFragment"
-        tools:layout="@layout/fragment_navigation_drawer" />
-
-    <!-- Conteúdo -->
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        tools:layout="@layout/navigation_drawer" />
 
 </android.support.v4.widget.DrawerLayout>
 
+2) ListView
 
+/res/layout/navigation_drawer.xml
+
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:choiceMode="singleChoice"
+    android:divider="@android:color/transparent"
+    android:dividerHeight="0dp"
+    android:background="#cccc"
+    tools:context=".NavigationDrawerFragment" />
 
 2) Activity
 
@@ -113,7 +126,7 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public ListView getNavDrawerListView(LayoutInflater inflater, ViewGroup container) {
-        ListView listView = (ListView) inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        ListView listView = (ListView) inflater.inflate(R.layout.navigation_drawer, container, false);
         return listView;
     }
 
