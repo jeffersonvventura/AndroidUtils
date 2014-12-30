@@ -21,7 +21,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:name="livroandroid.fragment.NavigationDrawerFragment"
-        tools:layout="@layout/navigation_drawer" />
+        />
 
 </android.support.v4.widget.DrawerLayout>
 

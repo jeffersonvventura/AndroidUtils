@@ -301,14 +301,12 @@ public class NavigationDrawerFragment extends Fragment {
      * Callbacks interface that all activities using this fragment must implement.
      */
     public static interface NavigationDrawerCallbacks {
-        /**
-         * Called when an item in the navigation drawer is selected.
-         */
-        void onNavDrawerItemSelected(int position);
+        ListView getNavDrawerListView(LayoutInflater inflater, ViewGroup container);
 
         ListAdapter getNavDrawerListAdapter();
 
-        ListView getNavDrawerListView(LayoutInflater inflater, ViewGroup container);
+        void onNavDrawerItemSelected(int position);
+
     }
 
     public static interface NavigationDrawerTitleCallbacks {
