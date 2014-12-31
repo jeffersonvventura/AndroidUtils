@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -181,6 +182,27 @@ public abstract class BaseFragment extends DebugFragment {
                 }
             });
         }
+    }
+
+    protected void setTextString(int resId, String text) {
+        View view = getView();
+        if (view != null) {
+            TextView t = (TextView) view.findViewById(resId);
+            if (t != null) {
+                t.setText(text);
+            }
+        }
+    }
+
+    protected String getTextString(int resId) {
+        View view = getView();
+        if (view != null) {
+            TextView t = (TextView) view.findViewById(resId);
+            if (t != null) {
+                return t.getText().toString();
+            }
+        }
+        return null;
     }
 
     protected void toast(String msg) {
