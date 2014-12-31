@@ -9,46 +9,51 @@ import android.util.Log;
  */
 public class DebugActivity extends ActionBarActivity {
     protected static final String TAG = "livroandroid";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, getClassName() + ".onCreate(): " + savedInstanceState);
+        log( getClassName() + ".onCreate(): " + savedInstanceState);
     }
     protected void onStart() {
         super.onStart();
-        Log.i(TAG, getClassName() + ".onStart().");
+        log( getClassName() + ".onStart().");
     }
     protected void onRestart() {
         super.onRestart();
-        Log.i(TAG, getClassName() + ".onRestart().");
+        log( getClassName() + ".onRestart().");
     }
     protected void onResume() {
         super.onResume();
-        Log.i(TAG, getClassName() + ".onResume().");
+        log( getClassName() + ".onResume().");
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.i(TAG, getClassName() + ".onSaveInstanceState().");
+        log( getClassName() + ".onSaveInstanceState().");
     }
 
     protected void onPause() {
         super.onPause();
-        Log.i(TAG, getClassName() + ".onPause().");
+        log( getClassName() + ".onPause().");
     }
     protected void onStop() {
         super.onStop();
-        Log.i(TAG, getClassName() + ".onStop().");
+        log( getClassName() + ".onStop().");
     }
     protected void onDestroy() {
         super.onDestroy();
-        Log.i(TAG, getClassName() + ".onDestroy().");
+        log( getClassName() + ".onDestroy().");
     }
     private String getClassName() {
         // Retorna o nome da classe sem o pacote
         Class cls = ((Object) this).getClass();
         String s = cls.getSimpleName();
         return s;
+    }
+
+    protected void log(String msg) {
+        Log.d(TAG,msg);
     }
 }

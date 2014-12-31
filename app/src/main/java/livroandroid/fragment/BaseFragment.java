@@ -190,4 +190,8 @@ public abstract class BaseFragment extends DebugFragment {
     protected void alert(String msg) {
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
+
+    protected void log(String msg) {
+        Log.d(TAG,msg);
+    }
 }
