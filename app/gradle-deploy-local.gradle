@@ -9,7 +9,8 @@ apply plugin: 'maven'
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "file:///R:/gradle/rep/")
+            //repository(url: "file:///R:/gradle/rep/")
+            repository(url: "file:///home/ricardo/gradle/rep")
 
             pom.groupId = GROUP
             pom.artifactId = POM_ARTIFACT_ID
