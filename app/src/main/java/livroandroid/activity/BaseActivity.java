@@ -1,7 +1,6 @@
 package livroandroid.activity;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.Toast;
@@ -9,7 +8,7 @@ import android.widget.Toast;
 /**
  * Created by Ricardo Lecheta on 22/09/2014.
  */
-public class BaseActivity extends ActionBarActivity {
+public class BaseActivity extends DebugActivity {
 
     private static final String TAG = "livroandroid";
 
@@ -18,7 +17,7 @@ public class BaseActivity extends ActionBarActivity {
     }
 
     protected void log(String msg) {
-        Log.d(TAG,msg);
+        Log.d(TAG, msg);
     }
 
     protected void toast(String msg) {

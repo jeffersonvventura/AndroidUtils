@@ -28,8 +28,6 @@ import br.com.livroandroid.androidutils.R;
  * Fragment used for managing interactions for and presentation of a navigation drawer.
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
- *
- *
  */
 public class NavigationDrawerFragment extends Fragment {
 
@@ -104,7 +102,7 @@ public class NavigationDrawerFragment extends Fragment {
             log("NavigationDrawerFragment.onCreateView: listView: " + listView);
         }
 
-        if(listView != null) {
+        if (listView != null) {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -122,7 +120,7 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     private void log(String s) {
-        if(LOG_ON) {
+        if (LOG_ON) {
             Log.d("NavigationDrawerFragment", s);
         }
     }
@@ -130,7 +128,7 @@ public class NavigationDrawerFragment extends Fragment {
     /**
      * Users of this fragment must call this method to set up the navigation drawer interactions.
      *
-     * @param fragmentId   The android:id of this fragment in its activity's layout.
+     * @param fragmentId     The android:id of this fragment in its activity's layout.
      * @param drawerLayoutId The DrawerLayout containing this fragment's UI.
      * @param imgNavDrawerId Image Drawer icon
      */
@@ -257,7 +255,7 @@ public class NavigationDrawerFragment extends Fragment {
         // If the drawer is open, show the global app actions in the action bar. See also
         // showGlobalContextActionBar, which controls the top-left area of the action bar.
         if (mDrawerLayout != null && isDrawerOpen()) {
-            if(mCallbacks != null) {
+            if (mCallbacks != null) {
                 //inflater.inflate(R.menu.global, menu);
 //                mCallbacks.inflateGlobalMenu();
             }

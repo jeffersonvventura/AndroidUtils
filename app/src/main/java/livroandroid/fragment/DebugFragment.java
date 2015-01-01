@@ -55,6 +55,7 @@ public class DebugFragment extends Fragment {
         super.onPause();
         log(getClassName() + ".onPause().");
     }
+
     public void onStop() {
         super.onStop();
         log(getClassName() + ".onStop().");
@@ -77,7 +78,7 @@ public class DebugFragment extends Fragment {
         log(getClassName() + ".onDestroy().");
     }
 
-    private String getClassName() {
+    public String getClassName() {
         // Retorna o nome da classe sem o pacote
         Class cls = ((Object) this).getClass();
         String s = cls.getSimpleName();
@@ -85,6 +86,6 @@ public class DebugFragment extends Fragment {
     }
 
     protected void log(String msg) {
-        Log.d(TAG,msg);
+        Log.d(TAG, msg);
     }
 }

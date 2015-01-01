@@ -13,40 +13,46 @@ public class DebugActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        log( getClassName() + ".onCreate(): " + savedInstanceState);
+        log(getClassName() + ".onCreate(): " + savedInstanceState);
     }
+
     protected void onStart() {
         super.onStart();
-        log( getClassName() + ".onStart().");
+        log(getClassName() + ".onStart().");
     }
+
     protected void onRestart() {
         super.onRestart();
-        log( getClassName() + ".onRestart().");
+        log(getClassName() + ".onRestart().");
     }
+
     protected void onResume() {
         super.onResume();
-        log( getClassName() + ".onResume().");
+        log(getClassName() + ".onResume().");
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        log( getClassName() + ".onSaveInstanceState().");
+        log(getClassName() + ".onSaveInstanceState().");
     }
 
     protected void onPause() {
         super.onPause();
-        log( getClassName() + ".onPause().");
+        log(getClassName() + ".onPause().");
     }
+
     protected void onStop() {
         super.onStop();
-        log( getClassName() + ".onStop().");
+        log(getClassName() + ".onStop().");
     }
+
     protected void onDestroy() {
         super.onDestroy();
-        log( getClassName() + ".onDestroy().");
+        log(getClassName() + ".onDestroy().");
     }
-    private String getClassName() {
+
+    public String getClassName() {
         // Retorna o nome da classe sem o pacote
         Class cls = ((Object) this).getClass();
         String s = cls.getSimpleName();
@@ -54,6 +60,6 @@ public class DebugActivity extends ActionBarActivity {
     }
 
     protected void log(String msg) {
-        Log.d(TAG,msg);
+        Log.d(TAG, msg);
     }
 }
