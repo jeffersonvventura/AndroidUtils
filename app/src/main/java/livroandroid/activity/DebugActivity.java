@@ -13,43 +13,59 @@ public class DebugActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        log(getClassName() + ".onCreate(): " + savedInstanceState);
+        if(isLogLifecycle()) {
+            log(getClassName() + ".onCreate(): " + savedInstanceState);
+        }
     }
 
     protected void onStart() {
         super.onStart();
-        log(getClassName() + ".onStart().");
+        if(isLogLifecycle()) {
+            log(getClassName() + ".onStart().");
+        }
     }
 
     protected void onRestart() {
         super.onRestart();
-        log(getClassName() + ".onRestart().");
+        if(isLogLifecycle()) {
+            log(getClassName() + ".onRestart().");
+        }
     }
 
     protected void onResume() {
         super.onResume();
-        log(getClassName() + ".onResume().");
+        if(isLogLifecycle()) {
+            log(getClassName() + ".onResume().");
+        }
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        log(getClassName() + ".onSaveInstanceState().");
+        if(isLogLifecycle()) {
+            log(getClassName() + ".onSaveInstanceState().");
+        }
     }
 
     protected void onPause() {
         super.onPause();
-        log(getClassName() + ".onPause().");
+        if(isLogLifecycle()) {
+            log(getClassName() + ".onPause().");
+        }
     }
 
     protected void onStop() {
         super.onStop();
-        log(getClassName() + ".onStop().");
+        if(isLogLifecycle()) {
+            log(getClassName() + ".onStop().");
+        }
     }
 
     protected void onDestroy() {
         super.onDestroy();
-        log(getClassName() + ".onDestroy().");
+        if(isLogLifecycle()) {
+            log(getClassName() + ".onDestroy().");
+        }
     }
 
     public String getClassName() {
@@ -60,6 +76,16 @@ public class DebugActivity extends ActionBarActivity {
     }
 
     protected void log(String msg) {
-        Log.d(TAG, msg);
+        if(isLogOn()) {
+            Log.d(TAG, msg);
+        }
+    }
+
+    protected boolean isLogOn() {
+        return true;
+    }
+
+    protected boolean isLogLifecycle() {
+        return false;
     }
 }

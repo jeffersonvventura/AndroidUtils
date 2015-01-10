@@ -64,27 +64,6 @@ public class AndroidUtils {
         }
     }
 
-    // Retorna se é Android 3.x "honeycomb" ou superior (API Level 11)
-    public static boolean isAndroid_3() {
-        int apiLevel = Build.VERSION.SDK_INT;
-        if (apiLevel >= 11) {
-            return true;
-        }
-        return false;
-    }
-
-    // Retorna se a tela é large ou xlarge
-    public static boolean isTablet(Context context) {
-        return (context.getResources().getConfiguration().screenLayout
-                & Configuration.SCREENLAYOUT_SIZE_MASK)
-                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
-    }
-
-    // Retona se é um tablet com Android 3.x
-    public static boolean isAndroid_3_Tablet(Context context) {
-        return isAndroid_3() && isTablet(context);
-    }
-
     // Fecha o teclado virtual se aberto (view com foque)
     public static boolean closeVirtualKeyboard(Context context, View view) {
         // Fecha o teclado virtual
@@ -141,5 +120,30 @@ public class AndroidUtils {
         Drawable drawable = ta.getDrawable(0 /* index */);
         ta.recycle();
         return drawable;
+    }
+
+    public static boolean isAndroid3Honeycomb() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
+    }
+
+    public static boolean isAndroid4ICS() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+    }
+
+    public static boolean isAndroid5Lollipop() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+    }
+
+
+    // Retorna se a tela é large ou xlarge
+    public static boolean isTablet(Context context) {
+        return (context.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK)
+                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+    }
+
+    // Retona se é um tablet com Android 3.x
+    public static boolean isAndroid_3_Tablet(Context context) {
+        return isAndroid3Honeycomb() && isTablet(context);
     }
 }

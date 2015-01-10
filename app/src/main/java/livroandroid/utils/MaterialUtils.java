@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
  */
 public class MaterialUtils {
 
-    public void setRippleBackgroundEffect(FrameLayout view) {
+    public static void setRippleBackgroundEffect(FrameLayout view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             int[] attrs = new int[] { android.R.attr.selectableItemBackground};
             TypedArray ta = view.getContext().obtainStyledAttributes(attrs);
