@@ -23,10 +23,10 @@ dependencies {
 }
 
 // Para buildar para: /home/ricardo/gradle/rep
-//apply from: 'gradle-deploy-local.gradle'
+apply from: 'gradle-deploy-local.gradle'
 
 // Para buildar no Maven-Central
 // Depois do build entrar no site, selecionar release e fazer Close
 // https://oss.sonatype.org/#stagingRepositories
-apply from: 'gradle-mvn-push.gradle'
+//apply from: 'gradle-mvn-push.gradle'
 

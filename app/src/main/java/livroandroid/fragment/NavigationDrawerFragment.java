@@ -11,7 +11,9 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -92,6 +94,8 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Log.d("temp","onCreateView CONTAINER : " + container);
 
         NavDrawerListView navView = mCallbacks.getNavDrawerView(this, inflater, container);
 
@@ -219,7 +223,7 @@ public class NavigationDrawerFragment extends Fragment {
         // If the user hasn't 'learned' about the drawer, open it to introduce them to the drawer,
         // per the navigation drawer design guidelines.
         if (!mUserLearnedDrawer && !mFromSavedInstanceState) {
-            mDrawerLayout.openDrawer(mFragmentContainerView);
+            openDrawer();
         }
 
         // Defer code dependent on restoration of previous instance state.
@@ -239,7 +243,7 @@ public class NavigationDrawerFragment extends Fragment {
             listView.setItemChecked(position, true);
         }
         if (mDrawerLayout != null) {
-            mDrawerLayout.closeDrawer(mFragmentContainerView);
+            closeDrawer();
         }
         if (mCallbacks != null && call) {
             mCallbacks.onNavDrawerItemSelected(this, position);
@@ -316,7 +320,7 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     public boolean isDrawerOpen() {
-        return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
+        return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(Gravity.START);
     }
 
     public boolean isDrawerClosed() {
@@ -325,13 +329,13 @@ public class NavigationDrawerFragment extends Fragment {
 
     public void openDrawer() {
         if (mDrawerLayout != null) {
-            mDrawerLayout.openDrawer(mFragmentContainerView);
+            mDrawerLayout.openDrawer(Gravity.START);
         }
     }
 
     public void closeDrawer() {
         if (mDrawerLayout != null) {
-            mDrawerLayout.closeDrawer(mFragmentContainerView);
+            mDrawerLayout.closeDrawer(Gravity.START);
         }
     }
 
@@ -424,5 +428,13 @@ public class NavigationDrawerFragment extends Fragment {
         tUserEmail.setText(stringNavUserEmail);
 
         return view;
+    }
+
+    public DrawerLayout getDrawerLayout() {
+        return mDrawerLayout;
+    }
+
+    public ActionBarDrawerToggle getDrawerToggle() {
+        return mDrawerToggle;
     }
 }

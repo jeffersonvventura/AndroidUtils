@@ -1,7 +1,7 @@
 1) Enviar build pro Maven Central
 gradlew clean build uploadArchives
 ou
-gradle clean build uploadArchives
+./gradlew clean build uploadArchives
 
 2) Configurar usuario e senha
 ~/users/.gradle/gradle.properties

@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import br.com.livroandroid.androidutils.R;
+
 public class AndroidUtils {
     protected static final String TAG = "livroandroid";
 
@@ -145,5 +147,28 @@ public class AndroidUtils {
     // Retona se é um tablet com Android 3.x
     public static boolean isAndroid_3_Tablet(Context context) {
         return isAndroid3Honeycomb() && isTablet(context);
+    }
+
+    private static final int[] RES_IDS_ACTION_BAR_SIZE = { R.attr.actionBarSize };
+
+    /** Calculates the Action Bar height in pixels. */
+    public static int getActionBarSize(Context context) {
+        if (context == null) {
+            return 0;
+        }
+
+        Resources.Theme curTheme = context.getTheme();
+        if (curTheme == null) {
+            return 0;
+        }
+
+        TypedArray att = curTheme.obtainStyledAttributes(RES_IDS_ACTION_BAR_SIZE);
+        if (att == null) {
+            return 0;
+        }
+
+        float size = att.getDimension(0, 0);
+        att.recycle();
+        return (int) size;
     }
 }
