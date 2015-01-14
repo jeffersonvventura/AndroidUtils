@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package livroandroid.view;
+package com.google.samples.apps.iosched.ui.widget;
 
 import android.R;
 import android.content.Context;
@@ -25,6 +25,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
+
 
 class SlidingTabStrip extends LinearLayout {
 
@@ -59,7 +60,7 @@ class SlidingTabStrip extends LinearLayout {
 
         TypedValue outValue = new TypedValue();
         context.getTheme().resolveAttribute(R.attr.colorForeground, outValue, true);
-        final int themeForegroundColor =  outValue.data;
+        final int themeForegroundColor = outValue.data;
 
         mDefaultBottomBorderColor = setColorAlpha(themeForegroundColor,
                 DEFAULT_BOTTOM_BORDER_COLOR_ALPHA);
