@@ -37,9 +37,14 @@ import livroandroid.utils.AndroidUtils;
 public class AddToScheduleFABFrameLayout extends CheckableFrameLayout {
     private View mRevealView;
     private float mHotSpotX, mHotSpotY;
+
+    private int mRevealViewOnColor;
     private int mRevealViewOffColor;
+
     private int drawableOn;
     private int drawableOff;
+
+    public int v4;
 
     public AddToScheduleFABFrameLayout(Context context) {
         this(context, null, 0, 0);
@@ -59,7 +64,10 @@ public class AddToScheduleFABFrameLayout extends CheckableFrameLayout {
         mRevealView = new View(context);
         mRevealView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         addView(mRevealView, 0);
-        mRevealViewOffColor = getResources().getColor(AndroidUtils.getMaterialThemeAccentColor(context));
+        //mRevealViewOffColor = getResources().getColor(AndroidUtils.getMaterialThemeAccentColor(context));
+
+        mRevealViewOnColor = Color.WHITE;
+        mRevealViewOffColor = Color.RED;
     }
 
     @Override
@@ -101,7 +109,7 @@ public class AddToScheduleFABFrameLayout extends CheckableFrameLayout {
             });
             animator.start();
             mRevealView.setVisibility(View.VISIBLE);
-            mRevealView.setBackgroundColor(mChecked ? Color.WHITE : mRevealViewOffColor);
+            mRevealView.setBackgroundColor(mChecked ? mRevealViewOnColor : mRevealViewOffColor);
         } else {
             mRevealView.setVisibility(View.GONE);
 
@@ -116,11 +124,10 @@ public class AddToScheduleFABFrameLayout extends CheckableFrameLayout {
         }
     }
 
-    public void setDrawableOff(int drawableOff) {
+    public void setDrawableOnOff(int drawableOn,int drawableOff, int revealViewOnColorId, int revealViewOffColorId) {
         this.drawableOff = drawableOff;
-    }
-
-    public void setDrawableOn(int drawableOn) {
         this.drawableOn = drawableOn;
+        this.mRevealViewOnColor = getResources().getColor(revealViewOnColorId);
+        this.mRevealViewOffColor = getResources().getColor(revealViewOffColorId);
     }
 }
