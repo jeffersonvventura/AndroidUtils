@@ -1,4 +1,4 @@
-package livroandroid.utils;
+package livroandroid.lib.utils;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

@@ -1,4 +1,4 @@
-package livroandroid.utils;
+package livroandroid.lib.utils;
 
 import android.app.AlertDialog;
 import android.content.Context;

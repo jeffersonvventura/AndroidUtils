@@ -15,7 +15,7 @@
         android:src="@drawable/nav_drawer_header"
         android:scaleType="fitXY" />
 
-    <livroandroid.view.RoundedImageView
+    <livroandroid.lib.view.RoundedImageView
         android:id="@+id/imgUserPhoto"
         android:layout_width="@dimen/userPhoto_layout_width"
         android:layout_height="@dimen/userPhoto_layout_height"

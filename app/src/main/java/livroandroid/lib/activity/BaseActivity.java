@@ -1,7 +1,6 @@
-package livroandroid.activity;
+package livroandroid.lib.activity;
 
 import android.content.Context;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.Toast;
 

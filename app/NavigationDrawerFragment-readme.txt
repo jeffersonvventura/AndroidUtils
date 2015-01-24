@@ -20,7 +20,7 @@
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:name="livroandroid.fragment.NavigationDrawerFragment"
+        android:name="livroandroid.lib.fragment.NavigationDrawerFragment"
         />
 
 </android.support.v4.widget.DrawerLayout>

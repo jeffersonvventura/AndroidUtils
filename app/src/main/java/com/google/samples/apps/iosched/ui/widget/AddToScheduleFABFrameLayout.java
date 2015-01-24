@@ -31,8 +31,6 @@ import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 
-import livroandroid.utils.AndroidUtils;
-
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class AddToScheduleFABFrameLayout extends CheckableFrameLayout {
     private View mRevealView;

@@ -1,4 +1,4 @@
-package livroandroid.fragment;
+package livroandroid.lib.fragment;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -95,7 +95,7 @@ public class NavigationDrawerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Log.d("temp","onCreateView CONTAINER : " + container);
+        Log.d("temp", "onCreateView CONTAINER : " + container);
 
         NavDrawerListView navView = mCallbacks.getNavDrawerView(this, inflater, container);
 

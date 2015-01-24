@@ -1,4 +1,4 @@
-package livroandroid.fragment;
+package livroandroid.lib.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

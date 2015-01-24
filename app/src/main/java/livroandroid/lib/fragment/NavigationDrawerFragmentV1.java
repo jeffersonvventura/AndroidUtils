@@ -1,4 +1,4 @@
-package livroandroid.fragment;
+package livroandroid.lib.fragment;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
