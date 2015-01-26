@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2014 Google Inc. All rights reserved.
  *
@@ -24,7 +23,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.Property;
 import android.widget.FrameLayout;
 
 public class DrawShadowFrameLayout extends FrameLayout {
@@ -37,31 +35,47 @@ public class DrawShadowFrameLayout extends FrameLayout {
     private float mAlpha = 1f;
 
     public DrawShadowFrameLayout(Context context) {
-        this(context, null, 0);
+        super(context);
     }
 
     public DrawShadowFrameLayout(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
     }
 
     public DrawShadowFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-//        final TypedArray a = context.obtainStyledAttributes(attrs,
-//                R.styleable.DrawShadowFrameLayout, 0, 0);
-
-//        mShadowDrawable = a.getDrawable(R.styleable.DrawShadowFrameLayout_shadowDrawable);
-//        if (mShadowDrawable != null) {
-//            mShadowDrawable.setCallback(this);
-//            if (mShadowDrawable instanceof NinePatchDrawable) {
-//                mShadowNinePatchDrawable = (NinePatchDrawable) mShadowDrawable;
-//            }
-//        }
-
-//        mShadowVisible = a.getBoolean(R.styleable.DrawShadowFrameLayout_shadowVisible, true);
-//        setWillNotDraw(!mShadowVisible || mShadowDrawable == null);
-//
-//        a.recycle();
     }
+
+    public DrawShadowFrameLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
+
+    //    public DrawShadowFrameLayout(Context context) {
+//        this(context, null, 0);
+//    }
+//
+//    public DrawShadowFrameLayout(Context context, AttributeSet attrs) {
+//        this(context, attrs, 0);
+//    }
+//
+//    public DrawShadowFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+//        super(context, attrs, defStyleAttr);
+////        final TypedArray a = context.obtainStyledAttributes(attrs,
+////                R.styleable.DrawShadowFrameLayout, 0, 0);
+//
+////        mShadowDrawable = a.getDrawable(R.styleable.DrawShadowFrameLayout_shadowDrawable);
+////        if (mShadowDrawable != null) {
+////            mShadowDrawable.setCallback(this);
+////            if (mShadowDrawable instanceof NinePatchDrawable) {
+////                mShadowNinePatchDrawable = (NinePatchDrawable) mShadowDrawable;
+////            }
+////        }
+//
+////        mShadowVisible = a.getBoolean(R.styleable.DrawShadowFrameLayout_shadowVisible, true);
+////        setWillNotDraw(!mShadowVisible || mShadowDrawable == null);
+////
+////        a.recycle();
+//    }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -113,17 +127,17 @@ public class DrawShadowFrameLayout extends FrameLayout {
 //        setWillNotDraw(!mShadowVisible || mShadowDrawable == null);
     }
 
-    private static Property<DrawShadowFrameLayout, Float> SHADOW_ALPHA
-            = new Property<DrawShadowFrameLayout, Float>(Float.class, "shadowAlpha") {
-        @Override
-        public Float get(DrawShadowFrameLayout dsfl) {
-            return dsfl.mAlpha;
-        }
-
-        @Override
-        public void set(DrawShadowFrameLayout dsfl, Float value) {
-            dsfl.mAlpha = value;
-            ViewCompat.postInvalidateOnAnimation(dsfl);
-        }
-    };
+//    private static Property<DrawShadowFrameLayout, Float> SHADOW_ALPHA
+//            = new Property<DrawShadowFrameLayout, Float>(Float.class, "shadowAlpha") {
+//        @Override
+//        public Float get(DrawShadowFrameLayout dsfl) {
+//            return dsfl.mAlpha;
+//        }
+//
+//        @Override
+//        public void set(DrawShadowFrameLayout dsfl, Float value) {
+//            dsfl.mAlpha = value;
+//            ViewCompat.postInvalidateOnAnimation(dsfl);
+//        }
+//    };
 }

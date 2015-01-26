@@ -29,7 +29,8 @@ import android.widget.TextView;
 import br.com.livroandroid.androidutils.R;
 
 /**
- * Baseado no Wizard do Android Studio sobre Nav Drawer.
+ * Baseado no Wizard do Android Studio sobre Nav Drawer. Deixei os comentários originais em inglês.
+ * <p/>
  * <p/>
  * Fragment used for managing interactions for and presentation of a navigation drawer.
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
@@ -55,7 +56,6 @@ public class NavigationDrawerFragment extends Fragment {
      * A pointer to the current callbacks instance (the Activity).
      */
     private NavigationDrawerCallbacks mCallbacks;
-    private NavigationDrawerCallbacks mCallbackTitle;
 
     /**
      * Helper component that ties the action bar to the navigation drawer.
@@ -107,12 +107,13 @@ public class NavigationDrawerFragment extends Fragment {
                 View view = navView.view;
 
                 if (view == null) {
-                    throw new RuntimeException("The method getNavDrawerView should return a not null View object.");
+                    return createDefaultView("The method getNavDrawerView should return a not null View object.");
                 }
+
                 listView = (ListView) view.findViewById(navView.listViewId);
 
-                if (view == null) {
-                    throw new RuntimeException("The ListView with the specified id was not found. Please review the view returned by the method getNavDrawerView.");
+                if (listView == null) {
+                    return createDefaultView("The ListView with the specified id was not found. Please review the view returned by the method getNavDrawerView.");
                 }
 
                 return view;
@@ -145,10 +146,6 @@ public class NavigationDrawerFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //listView = (ListView) view.findViewById(R.id.listView);
-
-        //listView = (ListView) view.findViewById(R.id.listView);
-
         log("NavigationDrawerFragment.onViewCreated: " + listView);
 
         if (mCallbacks != null && listView != null) {
@@ -179,9 +176,8 @@ public class NavigationDrawerFragment extends Fragment {
      * Users of this fragment must call this method to set up the navigation drawer interactions.
      *
      * @param drawerLayout   The DrawerLayout containing this fragment's UI.
-     * @param imgNavDrawerId Image Drawer icon
      */
-    public void setUp(DrawerLayout drawerLayout, int imgNavDrawerId) {
+    public void setUp(DrawerLayout drawerLayout) {
 
         this.mDrawerLayout = drawerLayout;
 
@@ -302,19 +298,15 @@ public class NavigationDrawerFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // If the drawer is open, show the global app actions in the action bar. See also
         // showGlobalContextActionBar, which controls the top-left area of the action bar.
-        if (mDrawerLayout != null && isDrawerOpen()) {
-            if (mCallbacks != null) {
-                //inflater.inflate(R.menu.global, menu);
-//                mCallbacks.inflateGlobalMenu();
-            }
-            //showGlobalContextActionBar();
-        }
+//        if (mDrawerLayout != null && isDrawerOpen()) {
+//
+//        }
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
+        if (mDrawerToggle != null && mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
@@ -325,6 +317,7 @@ public class NavigationDrawerFragment extends Fragment {
         setActionBarTitle(getString(title));
     }
 
+    @SuppressWarnings("deprecation")
     public void setActionBarTitle(CharSequence title) {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
@@ -365,11 +358,6 @@ public class NavigationDrawerFragment extends Fragment {
         ListAdapter getNavDrawerListAdapter(NavigationDrawerFragment navDrawerFrag);
 
         void onNavDrawerItemSelected(NavigationDrawerFragment navDrawerFrag, int position);
-
-    }
-
-    public static interface NavigationDrawerTitleCallbacks {
-        void changeActionBarTitle(String title);
     }
 
     public View setHeaderValues(View navDrawerView, int listViewContainerId, int imgNavDrawerHeaderId, int imgUserUserPhotoId, int stringNavUserName, int stringNavUserEmail) {
@@ -390,11 +378,11 @@ public class NavigationDrawerFragment extends Fragment {
         TextView tUserEmail = (TextView) view.findViewById(R.id.tUserEmail);
 
         ImageView imgUserPhoto = (ImageView) view.findViewById(R.id.imgUserPhoto);
-        if(imgUserPhoto != null) {
+        if (imgUserPhoto != null) {
             imgUserPhoto.setImageResource(imgUserUserPhotoId);
         }
 
-        if(tUserName != null && tUserEmail != null) {
+        if (tUserName != null && tUserEmail != null) {
             tUserName.setText(stringNavUserName);
             tUserEmail.setText(stringNavUserEmail);
         }
