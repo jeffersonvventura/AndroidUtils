@@ -29,11 +29,15 @@ import android.widget.TextView;
 import br.com.livroandroid.androidutils.R;
 
 /**
+ * Baseado no Wizard do Android Studio sobre Nav Drawer.
+ * <p/>
  * Fragment used for managing interactions for and presentation of a navigation drawer.
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
 public class NavigationDrawerFragment extends Fragment {
+
+    private static final String TAG = "NavigationDrawerFragment";
 
     /**
      * Remember the position of the selected item.
@@ -60,7 +64,6 @@ public class NavigationDrawerFragment extends Fragment {
 
     private DrawerLayout mDrawerLayout;
     private ListView listView;
-    private View mFragmentContainerView;
 
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
@@ -97,20 +100,35 @@ public class NavigationDrawerFragment extends Fragment {
 
         Log.d("temp", "onCreateView CONTAINER : " + container);
 
-        NavDrawerListView navView = mCallbacks.getNavDrawerView(this, inflater, container);
+        if (mCallbacks != null) {
+            NavDrawerListView navView = mCallbacks.getNavDrawerView(this, inflater, container);
 
-        View view = navView.view;
+            if (navView != null) {
+                View view = navView.view;
 
-        if(view == null) {
-            throw new RuntimeException("The method getNavDrawerView should return a not null View object.");
+                if (view == null) {
+                    throw new RuntimeException("The method getNavDrawerView should return a not null View object.");
+                }
+                listView = (ListView) view.findViewById(navView.listViewId);
+
+                if (view == null) {
+                    throw new RuntimeException("The ListView with the specified id was not found. Please review the view returned by the method getNavDrawerView.");
+                }
+
+                return view;
+            }
+        } else {
+            return createDefaultView("A activity precisa implementar a interface NavigationDrawerCallbacks.");
         }
-        listView = (ListView) view.findViewById(navView.listViewId);
 
-        if(view == null) {
-            throw new RuntimeException("The ListView with the specified id was not found. Please review the view returned by the method getNavDrawerView.");
-        }
+        return null;
+    }
 
-        return view;
+    private View createDefaultView(String s) {
+        TextView t = new TextView(getActivity());
+        t.setText(s);
+        t.setGravity(Gravity.CENTER);
+        return t;
     }
 
     public static class NavDrawerListView {
@@ -133,7 +151,7 @@ public class NavigationDrawerFragment extends Fragment {
 
         log("NavigationDrawerFragment.onViewCreated: " + listView);
 
-        if (listView != null) {
+        if (mCallbacks != null && listView != null) {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -160,16 +178,15 @@ public class NavigationDrawerFragment extends Fragment {
     /**
      * Users of this fragment must call this method to set up the navigation drawer interactions.
      *
-     * @param fragmentId     The android:id of this fragment in its activity's layout.
-     * @param drawerLayoutId The DrawerLayout containing this fragment's UI.
+     * @param drawerLayout   The DrawerLayout containing this fragment's UI.
      * @param imgNavDrawerId Image Drawer icon
      */
-    public void setUp(int fragmentId, int drawerLayoutId, int imgNavDrawerId) {
-        mFragmentContainerView = getActivity().findViewById(fragmentId);
-        mDrawerLayout = (DrawerLayout) getActivity().findViewById(drawerLayoutId);
+    public void setUp(DrawerLayout drawerLayout, int imgNavDrawerId) {
+
+        this.mDrawerLayout = drawerLayout;
 
         // set a custom shadow that overlays the main content when the drawer opens
-        mDrawerLayout.setDrawerShadow(br.com.livroandroid.androidutils.R.drawable.drawer_shadow, GravityCompat.START);
+        this.mDrawerLayout.setDrawerShadow(br.com.livroandroid.androidutils.R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
 
         ActionBar actionBar = getActionBar();
@@ -257,7 +274,7 @@ public class NavigationDrawerFragment extends Fragment {
             log("NavigationDrawerFragment.onAttach: " + activity);
             mCallbacks = (NavigationDrawerCallbacks) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException("Activity must implement NavigationDrawerCallbacks.");
+            Log.d(TAG, "Activity must implement NavigationDrawerCallbacks.");
         }
 
     }
@@ -355,55 +372,7 @@ public class NavigationDrawerFragment extends Fragment {
         void changeActionBarTitle(String title);
     }
 
-    /*public View getListHeader(ListView listView) {
-
-        View view = LayoutInflater.from(listView.getContext()).inflate(R.layout.nav_drawer_listview_header, listView, false);
-
-        ImageView imgUserBackground = (ImageView) view.findViewById(R.id.imgUserBackground);
-        imgUserBackground.setImageResource(R.drawable.nav_drawer_header);
-
-        TextView tUserName = (TextView) view.findViewById(R.id.tUserName);
-        TextView tUserEmail = (TextView) view.findViewById(R.id.tUserEmail);
-
-        ImageView imgUserPhoto = (ImageView) view.findViewById(R.id.imgUserPhoto);
-        imgUserPhoto.setImageResource(R.drawable.livro_android);
-
-        tUserName.setText(R.string.nav_drawer_username);
-        tUserEmail.setText(R.string.nav_drawer_email);
-
-        listView.addHeaderView(view);
-
-        return view;
-    }*/
-
-    /*
-    public View setHeaderValues() {
-
-        //View view = LayoutInflater.from(listView.getContext()).inflate(R.layout.nav_drawer_listview_header, listView, false);
-
-        View view = getView().findViewById(R.id.listViewContainer);
-
-        ImageView imgUserBackground = (ImageView) view.findViewById(R.id.imgUserBackground);
-        imgUserBackground.setImageResource(R.drawable.nav_drawer_header);
-//        imgUserBackground.setScaleType(ImageView.ScaleType.FIT_XY);
-
-        TextView tUserName = (TextView) view.findViewById(R.id.tUserName);
-        TextView tUserEmail = (TextView) view.findViewById(R.id.tUserEmail);
-
-        ImageView imgUserPhoto = (ImageView) view.findViewById(R.id.imgUserPhoto);
-        imgUserPhoto.setImageResource(R.drawable.livro_android);
-
-        tUserName.setText(R.string.nav_drawer_username);
-        tUserEmail.setText(R.string.nav_drawer_email);
-
-        //listView.addHeaderView(view);
-
-        return view;
-    }*/
-
-    public View setHeaderValues(View navDrawerView,int listViewContainerId,int imgNavDrawerHeaderId,int imgUserUserPhotoId, int stringNavUserName, int stringNavUserEmail) {
-
-        //View view = LayoutInflater.from(listView.getContext()).inflate(R.layout.nav_drawer_listview_header, listView, false);
+    public View setHeaderValues(View navDrawerView, int listViewContainerId, int imgNavDrawerHeaderId, int imgUserUserPhotoId, int stringNavUserName, int stringNavUserEmail) {
 
         View view = navDrawerView.findViewById(listViewContainerId);
 
@@ -411,21 +380,24 @@ public class NavigationDrawerFragment extends Fragment {
 
         ImageView imgUserBackground = (ImageView) view.findViewById(R.id.imgUserBackground);
 
-        if(imgUserBackground == null) {
-            throw new IllegalArgumentException("Invalid header view for nav drawer - Material Design");
+        if (imgUserBackground == null) {
+            return view;
         }
 
         imgUserBackground.setImageResource(imgNavDrawerHeaderId);
-//        imgUserBackground.setScaleType(ImageView.ScaleType.FIT_XY);
 
         TextView tUserName = (TextView) view.findViewById(R.id.tUserName);
         TextView tUserEmail = (TextView) view.findViewById(R.id.tUserEmail);
 
         ImageView imgUserPhoto = (ImageView) view.findViewById(R.id.imgUserPhoto);
-        imgUserPhoto.setImageResource(imgUserUserPhotoId);
+        if(imgUserPhoto != null) {
+            imgUserPhoto.setImageResource(imgUserUserPhotoId);
+        }
 
-        tUserName.setText(stringNavUserName);
-        tUserEmail.setText(stringNavUserEmail);
+        if(tUserName != null && tUserEmail != null) {
+            tUserName.setText(stringNavUserName);
+            tUserEmail.setText(stringNavUserEmail);
+        }
 
         return view;
     }

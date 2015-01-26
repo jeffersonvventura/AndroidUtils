@@ -1,8 +1,11 @@
 package livroandroid.lib.utils;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -194,4 +197,19 @@ public class AndroidUtils {
 
         return color;
     }
+
+    /* Lê a versão do app */
+    public static String getVersionName(Activity activity) {
+        PackageManager pm = activity.getPackageManager();
+        String packageName = activity.getPackageName();
+        String versionName;
+        try {
+            PackageInfo info = pm.getPackageInfo(packageName, 0);
+            versionName = info.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            versionName = "N/A";
+        }
+        return versionName;
+    }
+
 }
