@@ -3,6 +3,7 @@ package livroandroid.lib.utils;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.util.TypedValue;
 import android.widget.FrameLayout;
 
 /**
@@ -11,12 +12,17 @@ import android.widget.FrameLayout;
 public class MaterialUtils {
 
     public static void setRippleBackgroundEffect(FrameLayout view) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             int[] attrs = new int[] { android.R.attr.selectableItemBackground};
             TypedArray ta = view.getContext().obtainStyledAttributes(attrs);
-            Drawable drawable = ta.getDrawable(0 /* index */);
+            Drawable drawable = ta.getDrawable(0);
             ta.recycle();
             view.setForeground(drawable);
-        }
+        }*/
+
+        TypedValue outValue = new TypedValue();
+        view.getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
+                                             outValue, true);
+        view.setBackgroundResource(outValue.resourceId);
     }
 }
