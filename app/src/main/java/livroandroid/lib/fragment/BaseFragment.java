@@ -29,14 +29,6 @@ public abstract class BaseFragment extends DebugFragment {
         startTask(cod, listener, 0);
     }
 
-    public void cancellTask(String cod) {
-        Task task = tasks.get(cod);
-        if (task != null) {
-            task.cancel(true);
-            tasks.remove(cod);
-        }
-    }
-
     public void startTask(String cod, TaskListener listener, int progressId) {
         Log.d("livroandroid", "startTask: " + cod);
         View view = getView();
@@ -50,6 +42,14 @@ public abstract class BaseFragment extends DebugFragment {
             task = new Task(cod, listener, progressId);
             this.tasks.put(cod, task);
             task.execute();
+        }
+    }
+
+    public void cancellTask(String cod) {
+        Task task = tasks.get(cod);
+        if (task != null) {
+            task.cancel(true);
+            tasks.remove(cod);
         }
     }
 
