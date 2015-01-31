@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.Map;
 public abstract class BaseFragment extends DebugFragment {
     private Map<String, Task> tasks = new HashMap<String, Task>();
     private ProgressDialog progress;
+    protected SwipeRefreshLayout swipeLayout;
     // Este é o fragment base do projeto.
     // Útil se for necessário inserir algum método e lógica para todos os fragments
 
@@ -153,7 +155,12 @@ public abstract class BaseFragment extends DebugFragment {
         if (progressId > 0 && getView() != null) {
             View view = getView().findViewById(progressId);
             if (view != null) {
-                view.setVisibility(View.GONE);
+                if(view instanceof SwipeRefreshLayout) {
+                    SwipeRefreshLayout srl = (SwipeRefreshLayout) view;
+                    srl.setRefreshing(false);
+                } else {
+                    view.setVisibility(View.GONE);
+                }
                 return;
             }
         }
@@ -169,7 +176,14 @@ public abstract class BaseFragment extends DebugFragment {
         if (progressId > 0 && getView() != null) {
             View view = getView().findViewById(progressId);
             if (view != null) {
-                view.setVisibility(View.VISIBLE);
+                if(view instanceof SwipeRefreshLayout) {
+                    SwipeRefreshLayout srl = (SwipeRefreshLayout) view;
+                    if(!srl.isRefreshing()) {
+                        srl.setRefreshing(true);
+                    }
+                } else {
+                    view.setVisibility(View.VISIBLE);
+                }
                 return;
             }
         }
