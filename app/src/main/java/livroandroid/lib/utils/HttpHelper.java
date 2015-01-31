@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class HttpHelper {
     private static final String TAG = "Http";
-    public static boolean LOG_ON = true;
+    public static boolean LOG_ON = false;
 
     public static String doGet(String url) throws IOException {
         return doGet(url, null, "UTF-8");

@@ -19,7 +19,7 @@ import java.util.Map;
 public abstract class BaseFragment extends DebugFragment {
     private Map<String, Task> tasks = new HashMap<String, Task>();
     private ProgressDialog progress;
-    protected SwipeRefreshLayout swipeLayout;
+    private SwipeRefreshLayout swipeLayout;
     // Este é o fragment base do projeto.
     // Útil se for necessário inserir algum método e lógica para todos os fragments
 
