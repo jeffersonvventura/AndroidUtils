@@ -23,19 +23,26 @@ import br.com.livroandroid.androidutils.R;
 public class AndroidUtils {
     protected static final String TAG = "livroandroid";
 
+    /**
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+     */
     public static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivity == null) {
-            return false;
-        } else {
-            NetworkInfo[] info = connectivity.getAllNetworkInfo();
-            if (info != null) {
-                for (int i = 0; i < info.length; i++) {
-                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
-                        return true;
+        try {
+            ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (connectivity == null) {
+                return false;
+            } else {
+                NetworkInfo[] info = connectivity.getAllNetworkInfo();
+                if (info != null) {
+                    for (int i = 0; i < info.length; i++) {
+                        if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                            return true;
+                        }
                     }
                 }
             }
+        } catch (SecurityException e) {
+            alertDialog(context,e.getClass().getSimpleName(), e.getMessage());
         }
         return false;
     }

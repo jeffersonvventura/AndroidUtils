@@ -227,7 +227,15 @@ public abstract class BaseFragment extends DebugFragment {
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
+    protected void toast(int msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
     protected void alert(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    protected void alert(int msg) {
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
