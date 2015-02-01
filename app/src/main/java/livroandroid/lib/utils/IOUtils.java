@@ -3,6 +3,9 @@ package livroandroid.lib.utils;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -36,6 +39,27 @@ public class IOUtils {
             } catch (IOException e) {
                 Log.e(TAG, e.getMessage(), e);
             }
+        }
+    }
+
+    public static void writeString(File file, String valor) {
+        try {
+            FileOutputStream fout = new FileOutputStream(file);
+            fout.write(valor.getBytes());
+            fout.close();
+        } catch (IOException e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+    }
+
+    public static String readString(File file) {
+        try {
+            InputStream in = new FileInputStream(file);
+            String s = toString(in, "UTF-8");
+            return s;
+        } catch (IOException e) {
+            Log.e(TAG, e.getMessage(), e);
+            return null;
         }
     }
 }
