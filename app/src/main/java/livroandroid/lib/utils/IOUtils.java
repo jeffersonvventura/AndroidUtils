@@ -5,6 +5,7 @@ import android.util.Log;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,6 +58,8 @@ public class IOUtils {
             InputStream in = new FileInputStream(file);
             String s = toString(in, "UTF-8");
             return s;
+        } catch (FileNotFoundException e) {
+            return null;
         } catch (IOException e) {
             Log.e(TAG, e.getMessage(), e);
             return null;
