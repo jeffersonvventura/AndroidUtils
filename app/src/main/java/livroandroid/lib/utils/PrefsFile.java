@@ -48,6 +48,7 @@ public class PrefsFile {
 
     public static void setString(Context context, String chave, String valor) {
         try {
+            chave += ".txt";
             File f = context.getFileStreamPath(chave);
             if (f.exists()) {
                 Log.d(TAG, "PrefsFile.setString delete file: " + f);
@@ -65,6 +66,7 @@ public class PrefsFile {
 
     public static String getString(Context context, String chave) {
         try {
+            chave += ".txt";
             File f = context.getFileStreamPath(chave);
             Log.d(TAG, "PrefsFile.getString file: " + f);
             if (f.exists()) {
