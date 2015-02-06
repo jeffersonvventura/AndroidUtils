@@ -1,5 +1,6 @@
 package livroandroid.lib.utils;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
@@ -48,6 +49,19 @@ public class IOUtils {
             FileOutputStream fout = new FileOutputStream(file);
             fout.write(valor.getBytes());
             fout.close();
+        } catch (IOException e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+    }
+
+    public static void writeBitmap(File file, Bitmap bitmap) {
+        try {
+            if(!file.exists()) {
+                file.createNewFile();
+            }
+            FileOutputStream out = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.close();
         } catch (IOException e) {
             Log.e(TAG, e.getMessage(), e);
         }
