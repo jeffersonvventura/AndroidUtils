@@ -74,6 +74,34 @@ public abstract class BaseFragment extends DebugFragment {
         void onCancelled(String cod);
     }
 
+    /**
+     * Implementa a interface com métodos vazios.
+     *
+     * @param <T>
+     */
+    public static class BaseTask<T> implements TaskListener<T> {
+
+        @Override
+        public T execute() throws Exception {
+            return null;
+        }
+
+        @Override
+        public void updateView(T response) {
+
+        }
+
+        @Override
+        public void onError(Exception exception) {
+
+        }
+
+        @Override
+        public void onCancelled(String cod) {
+
+        }
+    }
+
     private class Task extends AsyncTask<Void, Void, TaskResult> {
 
         private String cod;

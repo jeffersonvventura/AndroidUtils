@@ -157,12 +157,13 @@ public class IOUtils {
         }
     }
 
-    public boolean downloadToFile(String url, File file) {
+    public static boolean downloadToFile(String url, File file) {
         checkMainThread();
         try {
             InputStream in = new URL(url).openStream();
             byte[] bytes = IOUtils.toBytes(in);
             IOUtils.writeBytes(file, bytes);
+            Log.d(TAG,"downloadToFile: " + file);
             return true;
         } catch (IOException e) {
             Log.e(TAG, e.getMessage(), e);
