@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 public class IOUtils {
     private static final String TAG = "IOUtils";
@@ -24,8 +25,8 @@ public class IOUtils {
      * @return
      * @throws IOException
      */
-    public static String toString(InputStream in, String charset)
-            throws IOException {
+    public static String toString(InputStream in, String charset) throws IOException {
+        checkMainThread();
         byte[] bytes = toBytes(in);
         String texto = new String(bytes, charset);
         return texto;
@@ -37,6 +38,7 @@ public class IOUtils {
      * @return
      */
     public static byte[] toBytes(InputStream in) {
+        checkMainThread();
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
             byte[] buffer = new byte[1024];
@@ -62,19 +64,26 @@ public class IOUtils {
     /**
      * Salva o texto em arquivo
      * @param file
-     * @param valor
+     * @param string
      */
-    public static void writeString(File file, String valor) {
+    public static void writeString(File file, String string) {
+        writeBytes(file,string.getBytes());
+    }
+
+    public static void writeBytes(File file, byte[] bytes) {
+        checkMainThread();
         try {
-            FileOutputStream fout = new FileOutputStream(file);
-            fout.write(valor.getBytes());
-            fout.close();
+            FileOutputStream out = new FileOutputStream(file);
+            out.write(bytes);
+            out.flush();
+            out.close();
         } catch (IOException e) {
             Log.e(TAG, e.getMessage(), e);
         }
     }
 
     public static String readString(File file) {
+        checkMainThread();
         try {
             InputStream in = new FileInputStream(file);
             String s = toString(in, "UTF-8");
@@ -93,6 +102,7 @@ public class IOUtils {
      * @param bitmap
      */
     public static void writeBitmap(File file, Bitmap bitmap) {
+        checkMainThread();
         try {
             if(!file.exists()) {
                 file.createNewFile();
@@ -118,9 +128,7 @@ public class IOUtils {
      * @param callback Interface de retorno
      */
     public static void saveBitmapToFile(String dir, String url,Bitmap bitmap,Callback callback) {
-        if(Looper.myLooper() == Looper.getMainLooper()) {
-            throw new RuntimeException("O método saveBitmapToFile não pode ser executado na UI Thread.");
-        }
+        checkMainThread();
         try {
             if(url == null || bitmap == null && callback != null) {
                 return;
@@ -144,11 +152,27 @@ public class IOUtils {
 
                 callback.onFileSaved(file,false);
             }
-
-
-
         } catch (IOException e) {
             Log.e(TAG, e.getMessage(), e);
+        }
+    }
+
+    public boolean downloadToFile(String url, File file) {
+        checkMainThread();
+        try {
+            InputStream in = new URL(url).openStream();
+            byte[] bytes = IOUtils.toBytes(in);
+            IOUtils.writeBytes(file, bytes);
+            return true;
+        } catch (IOException e) {
+            Log.e(TAG, e.getMessage(), e);
+            return false;
+        }
+    }
+
+    private static void checkMainThread() {
+        if(Looper.myLooper() == Looper.getMainLooper()) {
+            throw new RuntimeException("Qualquer operação de I/O não pode ser executado na UI Thread.");
         }
     }
 }
