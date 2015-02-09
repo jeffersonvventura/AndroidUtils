@@ -27,13 +27,13 @@ dependencies {
 }
 
 // Para buildar para: /home/ricardo/gradle/rep
-apply from: 'gradle-deploy-local.gradle'
+//apply from: 'gradle-deploy-local.gradle'
 
 // Para buildar no Maven-Central
 // Depois do build entrar no site, selecionar release e fazer Close
 // https://oss.sonatype.org/#stagingRepositories
 
-//apply from: 'gradle-mvn-push.gradle'
+apply from: 'gradle-mvn-push.gradle'
 //apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'\
 //task install(dependsOn: uploadArchives)
 
