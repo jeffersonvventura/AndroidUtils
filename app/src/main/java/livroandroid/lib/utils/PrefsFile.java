@@ -49,37 +49,21 @@ public class PrefsFile {
     public static void setString(Context context, String chave, String valor) {
         try {
             chave += ".txt";
-            File f = context.getFileStreamPath(chave);
-            if (f.exists()) {
-                Log.d(TAG, "PrefsFile.setString delete file: " + f);
-                f.delete();
-            }
+            File file = context.getFileStreamPath(chave);
             FileOutputStream out = context.openFileOutput(chave, Context.MODE_PRIVATE);
-            DataOutputStream dataOut = new DataOutputStream(out);
-            dataOut.writeUTF(valor);
-            dataOut.close();
-            Log.d(TAG, "PrefsFile.setString valor: " + valor);
+            IOUtils.writeString(out, valor);
+            Log.d(TAG, "PrefsFile.setString file: " + file + " >  " + valor);
         } catch (IOException ex) {
             Log.e(TAG, ex.getMessage(), ex);
         }
     }
 
     public static String getString(Context context, String chave) {
-        try {
-            chave += ".txt";
-            File f = context.getFileStreamPath(chave);
-            Log.d(TAG, "PrefsFile.getString file: " + f);
-            if (f.exists()) {
-                FileInputStream in = context.openFileInput(chave);
-                DataInputStream dataIn = new DataInputStream(in);
-                String s = dataIn.readUTF();
-                Log.d(TAG, "PrefsFile.getString s: " + s);
-                return s;
-            }
-        } catch (IOException ex) {
-            Log.e(TAG, ex.getMessage(), ex);
-        }
-        return null;
+        chave += ".txt";
+        File f = context.getFileStreamPath(chave);
+        String s = IOUtils.readString(f);
+        Log.d(TAG, "PrefsFile.getString file: " + f + " >  " + s);
+        return s;
     }
 }
 

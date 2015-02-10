@@ -55,14 +55,4 @@ public class SDCardUtils {
         File file = new File(dir,fileName);
         return file;
     }
-
-    public static void write(File file, String text) {
-        try {
-            FileOutputStream fout = new FileOutputStream(file);
-            fout.write(text.getBytes());
-            fout.close();
-        } catch (IOException e) {
-            Log.e("SDCardUtils",e.getMessage(),  e);
-        }
-    }
 }

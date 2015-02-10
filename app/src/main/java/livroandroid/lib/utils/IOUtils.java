@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 
 public class IOUtils {
@@ -61,6 +62,21 @@ public class IOUtils {
         }
     }
 
+    public static void writeString(OutputStream out, String string) {
+        writeBytes(out,string.getBytes());
+    }
+
+    public static void writeBytes(OutputStream out, byte[] bytes) {
+        checkMainThread();
+        try {
+            out.write(bytes);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+    }
+
     /**
      * Salva o texto em arquivo
      * @param file
@@ -85,6 +101,9 @@ public class IOUtils {
     public static String readString(File file) {
         checkMainThread();
         try {
+            if(file == null || !file.exists()) {
+                return null;
+            }
             InputStream in = new FileInputStream(file);
             String s = toString(in, "UTF-8");
             return s;
