@@ -27,7 +27,6 @@ public class IOUtils {
      * @throws IOException
      */
     public static String toString(InputStream in, String charset) throws IOException {
-        checkMainThread();
         byte[] bytes = toBytes(in);
         String texto = new String(bytes, charset);
         return texto;
@@ -39,7 +38,6 @@ public class IOUtils {
      * @return
      */
     public static byte[] toBytes(InputStream in) {
-        checkMainThread();
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
             byte[] buffer = new byte[1024];
@@ -67,7 +65,6 @@ public class IOUtils {
     }
 
     public static void writeBytes(OutputStream out, byte[] bytes) {
-        checkMainThread();
         try {
             out.write(bytes);
             out.flush();
@@ -87,7 +84,6 @@ public class IOUtils {
     }
 
     public static void writeBytes(File file, byte[] bytes) {
-        checkMainThread();
         try {
             FileOutputStream out = new FileOutputStream(file);
             out.write(bytes);
@@ -99,7 +95,6 @@ public class IOUtils {
     }
 
     public static String readString(File file) {
-        checkMainThread();
         try {
             if(file == null || !file.exists()) {
                 return null;
@@ -121,7 +116,6 @@ public class IOUtils {
      * @param bitmap
      */
     public static void writeBitmap(File file, Bitmap bitmap) {
-        checkMainThread();
         try {
             if(!file.exists()) {
                 file.createNewFile();
@@ -147,7 +141,6 @@ public class IOUtils {
      * @param callback Interface de retorno
      */
     public static void saveBitmapToFile(String dir, String url,Bitmap bitmap,Callback callback) {
-        checkMainThread();
         try {
             if(url == null || bitmap == null && callback != null) {
                 return;
@@ -177,7 +170,6 @@ public class IOUtils {
     }
 
     public static boolean downloadToFile(String url, File file) {
-        checkMainThread();
         try {
             InputStream in = new URL(url).openStream();
             byte[] bytes = IOUtils.toBytes(in);
@@ -190,7 +182,7 @@ public class IOUtils {
         }
     }
 
-    private static void checkMainThread() {
+    public static void checkMainThread() {
         if(Looper.myLooper() == Looper.getMainLooper()) {
             throw new RuntimeException("Qualquer operação de I/O não pode ser executado na UI Thread.");
         }

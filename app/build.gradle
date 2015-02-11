@@ -26,14 +26,11 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
 }
 
-// Para buildar para: /home/ricardo/gradle/rep
-//apply from: 'gradle-deploy-local.gradle'
+// Local
+apply from: 'gradle-deploy-local.gradle'
 
-// Para buildar no Maven-Central
-// Depois do build entrar no site, selecionar release e fazer Close
+// Maven Central
+// apply from: 'gradle-mvn-push.gradle'
+
+// Depois do build entrar no site, selecionar artefato e fazer Close/Release
 // https://oss.sonatype.org/#stagingRepositories
-
-apply from: 'gradle-mvn-push.gradle'
-//apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'\
-//task install(dependsOn: uploadArchives)
-
