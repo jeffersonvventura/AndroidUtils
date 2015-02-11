@@ -17,42 +17,60 @@ public class SDCardUtils {
     /**
      * Cria um arquivo público na raiz do sdcard
      */
-    public static File getPublicFile(String dirName, String fileName){
+    public static File getPublicFile( String fileName){
         File sdCardDir = Environment.getExternalStorageDirectory();
-        return createFile(sdCardDir,dirName, fileName);
+        return createFile(sdCardDir, fileName);
     }
 
     /**
-     *
+     * Cria um arquivo público na raiz do sdcard
      * @param type DIRECTORY_MUSIC, DIRECTORY_PODCASTS, DIRECTORY_RINGTONES, DIRECTORY_ALARMS, DIRECTORY_NOTIFICATIONS, DIRECTORY_PICTURES, DIRECTORY_MOVIES, DIRECTORY_DOWNLOADS, ou DIRECTORY_DCIM
      * @return
      */
-    public static File getPublicFileWithType(String dirName, String fileName,String type){
+    public static File getPublicFile( String fileName,String type){
         File sdCardDir = Environment.getExternalStoragePublicDirectory(type);
-        return createFile(sdCardDir,dirName, fileName);
+        return createFile(sdCardDir, fileName);
     }
 
-    public static File getPrivateFile(Context context, String dirName, String fileName){
+    /**
+     * Cria um arquivo privado na raiz do sdcard
+     *
+     * @param context
+     * @param fileName
+     * @return
+     */
+    public static File getPrivateFile(Context context,  String fileName){
         File sdCardDir = context.getExternalFilesDir(null);
-        return createFile(sdCardDir,dirName, fileName);
+        return createFile(sdCardDir, fileName);
+    }
+
+    /**
+     * Cria um arquivo privado na raiz do sdcard
+     *
+     * @param context
+     * @param fileName
+     * @param type @param type DIRECTORY_MUSIC, DIRECTORY_PODCASTS, DIRECTORY_RINGTONES, DIRECTORY_ALARMS, DIRECTORY_NOTIFICATIONS, DIRECTORY_PICTURES, DIRECTORY_MOVIES, DIRECTORY_DOWNLOADS
+     * @return
+     */
+    public static File getPrivateFile(Context context,  String fileName,String type){
+        File sdCardDir = context.getExternalFilesDir(type);
+        return createFile(sdCardDir, fileName);
     }
 
     /**
      * Cria o arquivo no SDCard na pasta informada.
      *
-     * @param sdCardDir Pasta raiz do sdcard
-     * @param dirName Pasta que será criada
+     * @param sdCardDir Pasta do sdcard
      * @param fileName Nome do arquivo
      *
      * @return
      */
-    private static File createFile(File sdCardDir,String dirName, String fileName) {
-        File dir = new File(sdCardDir, dirName);
-        if(!dir.exists()) {
-            dir.mkdir(); // Cria o diretório se não existe
+    private static File createFile(File sdCardDir,String fileName) {
+        if(!sdCardDir.exists()) {
+            sdCardDir.mkdir(); // Cria o diretório se não existe
         }
         // Retorna o arquivo para ler ou salvar no sd card
-        File file = new File(dir,fileName);
+        File file = new File(sdCardDir,fileName);
         return file;
     }
 }

@@ -36,7 +36,7 @@ public class DownloadUtil {
 
             String fileName = url.substring(url.lastIndexOf("/"));
 
-            File file = SDCardUtils.getPublicFileWithType("carros", fileName, Environment.DIRECTORY_PICTURES);
+            File file = SDCardUtils.getPublicFile(fileName, Environment.DIRECTORY_PICTURES);
             if(!file.exists()) {
                 FileOutputStream out = new FileOutputStream(file);
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);

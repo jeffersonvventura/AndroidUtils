@@ -135,12 +135,11 @@ public class IOUtils {
     /**
      * Salva o bitmap em arquivo. Utiliza a URL para descobrir o nome.
      *
-     * @param dir Diretório para criar no sd card
      * @param url URL original para extrair o nome do arquivo
      * @param bitmap Bitmap que já está em memória
      * @param callback Interface de retorno
      */
-    public static void saveBitmapToFile(String dir, String url,Bitmap bitmap,Callback callback) {
+    public static void saveBitmapToFile(String url,Bitmap bitmap,Callback callback) {
         try {
             if(url == null || bitmap == null && callback != null) {
                 return;
@@ -148,7 +147,7 @@ public class IOUtils {
 
             String fileName = url.substring(url.lastIndexOf("/"));
 
-            File file = SDCardUtils.getPublicFileWithType(dir, fileName, Environment.DIRECTORY_PICTURES);
+            File file = SDCardUtils.getPublicFile(fileName, Environment.DIRECTORY_PICTURES);
             if(file.exists()) {
                 callback.onFileSaved(file,true);
             }
