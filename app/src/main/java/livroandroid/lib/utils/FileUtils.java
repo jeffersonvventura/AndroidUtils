@@ -62,7 +62,7 @@ public class FileUtils {
      *
      * Obs: Apenas retorna o caminho do arquivo, mas não o cria.
      *
-     * Ex: /data/data/br.com.livroandroid.carros/files/arquivoi.txt
+     * Ex: /data/data/br.com.livroandroid.carros/files/arquivo.txt
      *
      * @param context
      * @param name

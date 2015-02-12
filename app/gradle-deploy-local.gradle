@@ -10,8 +10,8 @@ apply plugin: 'signing'
 uploadArchives {
     repositories {
         mavenDeployer {
-            //repository(url: "file:///r:/home/ricardo/gradle/rep")
-            repository(url: "file:///home/ricardo/gradle/rep")
+            repository(url: "file:///r:/home/ricardo/gradle/rep")
+            //repository(url: "file:///home/ricardo/gradle/rep")
 
             pom.groupId = GROUP
             pom.artifactId = POM_ARTIFACT_ID
