@@ -15,7 +15,7 @@ import java.io.OutputStream;
 /**
  * Created by ricardo on 11/02/15.
  */
-public class FileUtils2 {
+public class FileUtils {
 
     /**
      * Le da pasta /res/raw
