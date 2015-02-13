@@ -1,5 +1,6 @@
 package livroandroid.lib.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -11,7 +12,11 @@ public class BaseActivity extends DebugActivity {
 
     private static final String TAG = "livroandroid";
 
-    private Context getContext() {
+    protected Context getContext() {
+        return this;
+    }
+
+    protected Activity getActivity() {
         return this;
     }
 
