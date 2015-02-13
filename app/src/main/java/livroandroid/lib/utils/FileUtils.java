@@ -3,6 +3,7 @@ package livroandroid.lib.utils;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -86,6 +87,16 @@ public class FileUtils {
         // Cria o arquivo e retorna o OutputStream
         FileOutputStream out = context.openFileOutput(name, Context.MODE_PRIVATE);
         return out;
+    }
+
+    public static InputStream getPrivateFileInput(Context context,String name) {
+        try {
+            // Cria o arquivo e retorna o OutputStream
+            FileInputStream out = context.openFileInput(name);
+            return out;
+        } catch (FileNotFoundException e) {
+            return null;
+        }
     }
 
     /**
