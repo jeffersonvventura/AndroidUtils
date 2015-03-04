@@ -183,7 +183,7 @@ public abstract class BaseFragment extends DebugFragment {
         if (progressId > 0 && getView() != null) {
             View view = getView().findViewById(progressId);
             if (view != null) {
-                if(view instanceof SwipeRefreshLayout) {
+                if (view instanceof SwipeRefreshLayout) {
                     SwipeRefreshLayout srl = (SwipeRefreshLayout) view;
                     srl.setRefreshing(false);
                 } else {
@@ -204,9 +204,9 @@ public abstract class BaseFragment extends DebugFragment {
         if (progressId > 0 && getView() != null) {
             View view = getView().findViewById(progressId);
             if (view != null) {
-                if(view instanceof SwipeRefreshLayout) {
+                if (view instanceof SwipeRefreshLayout) {
                     SwipeRefreshLayout srl = (SwipeRefreshLayout) view;
-                    if(!srl.isRefreshing()) {
+                    if (!srl.isRefreshing()) {
                         srl.setRefreshing(true);
                     }
                 } else {

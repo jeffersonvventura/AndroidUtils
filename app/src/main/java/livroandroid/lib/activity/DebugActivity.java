@@ -13,28 +13,28 @@ public class DebugActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onCreate(): " + savedInstanceState);
         }
     }
 
     protected void onStart() {
         super.onStart();
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onStart().");
         }
     }
 
     protected void onRestart() {
         super.onRestart();
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onRestart().");
         }
     }
 
     protected void onResume() {
         super.onResume();
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onResume().");
         }
     }
@@ -42,28 +42,28 @@ public class DebugActivity extends ActionBarActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onSaveInstanceState().");
         }
     }
 
     protected void onPause() {
         super.onPause();
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onPause().");
         }
     }
 
     protected void onStop() {
         super.onStop();
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onStop().");
         }
     }
 
     protected void onDestroy() {
         super.onDestroy();
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onDestroy().");
         }
     }
@@ -76,7 +76,7 @@ public class DebugActivity extends ActionBarActivity {
     }
 
     protected void log(String msg) {
-        if(isLogOn()) {
+        if (isLogOn()) {
             Log.d(TAG, msg);
         }
     }

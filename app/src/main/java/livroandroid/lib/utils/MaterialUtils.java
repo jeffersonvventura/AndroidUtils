@@ -1,8 +1,5 @@
 package livroandroid.lib.utils;
 
-import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.TypedValue;
 import android.widget.FrameLayout;
 
@@ -22,7 +19,7 @@ public class MaterialUtils {
 
         TypedValue outValue = new TypedValue();
         view.getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
-                                             outValue, true);
+                outValue, true);
         view.setBackgroundResource(outValue.resourceId);
     }
 }

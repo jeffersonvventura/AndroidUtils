@@ -17,14 +17,14 @@ public class DebugFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onCreate().");
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onCreateView().");
         }
         return super.onCreateView(inflater, container, savedInstanceState);
@@ -33,7 +33,7 @@ public class DebugFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onActivityCreated().");
         }
     }
@@ -41,7 +41,7 @@ public class DebugFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onStart().");
         }
     }
@@ -49,7 +49,7 @@ public class DebugFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onResume().");
         }
     }
@@ -57,7 +57,7 @@ public class DebugFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onSaveInstanceState().");
         }
     }
@@ -65,14 +65,14 @@ public class DebugFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onPause().");
         }
     }
 
     public void onStop() {
         super.onStop();
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onStop().");
         }
     }
@@ -80,7 +80,7 @@ public class DebugFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onDetach().");
         }
     }
@@ -88,14 +88,14 @@ public class DebugFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onDestroyView().");
         }
     }
 
     public void onDestroy() {
         super.onDestroy();
-        if(isLogLifecycle()) {
+        if (isLogLifecycle()) {
             log(getClassName() + ".onDestroy().");
         }
     }
@@ -108,7 +108,7 @@ public class DebugFragment extends Fragment {
     }
 
     protected void log(String msg) {
-        if(isLogOn()) {
+        if (isLogOn()) {
             Log.d(TAG, msg);
         }
     }

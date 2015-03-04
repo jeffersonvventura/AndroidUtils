@@ -24,7 +24,7 @@ public class AndroidUtils {
     protected static final String TAG = "livroandroid";
 
     /**
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+     * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
      */
     public static boolean isNetworkAvailable(Context context) {
         try {
@@ -42,7 +42,7 @@ public class AndroidUtils {
                 }
             }
         } catch (SecurityException e) {
-            alertDialog(context,e.getClass().getSimpleName(), e.getMessage());
+            alertDialog(context, e.getClass().getSimpleName(), e.getMessage());
         }
         return false;
     }
@@ -124,11 +124,11 @@ public class AndroidUtils {
      * Para fazer android:foreground="?android:attr/selectableItemBackground"
      *
      * @param context getActionBar().getThemedContext()
-     * @param attrId android.R.attr.selectableItemBackground
+     * @param attrId  android.R.attr.selectableItemBackground
      * @return
      */
     public Drawable getDrawableAttr(Context context, int attrId) {
-        int[] attrs = new int[] { attrId};
+        int[] attrs = new int[]{attrId};
         TypedArray ta = context.obtainStyledAttributes(attrs);
         Drawable drawable = ta.getDrawable(0 /* index */);
         ta.recycle();
@@ -160,9 +160,11 @@ public class AndroidUtils {
         return isAndroid3Honeycomb() && isTablet(context);
     }
 
-    private static final int[] RES_IDS_ACTION_BAR_SIZE = { R.attr.actionBarSize };
+    private static final int[] RES_IDS_ACTION_BAR_SIZE = {R.attr.actionBarSize};
 
-    /** Calculates the Action Bar height in pixels. */
+    /**
+     * Calculates the Action Bar height in pixels.
+     */
     public static int getActionBarSize(Context context) {
         if (context == null) {
             return 0;
@@ -186,7 +188,7 @@ public class AndroidUtils {
     public static int getMaterialThemePrimaryColor(Context context) {
         TypedValue typedValue = new TypedValue();
 
-        TypedArray a = context.obtainStyledAttributes(typedValue.data, new int[] { R.attr.colorPrimary });
+        TypedArray a = context.obtainStyledAttributes(typedValue.data, new int[]{R.attr.colorPrimary});
         int color = a.getColor(0, 0);
 
         a.recycle();
@@ -197,7 +199,7 @@ public class AndroidUtils {
     public static int getMaterialThemeAccentColor(Context context) {
         TypedValue typedValue = new TypedValue();
 
-        TypedArray a = context.obtainStyledAttributes(typedValue.data, new int[] { R.attr.colorAccent });
+        TypedArray a = context.obtainStyledAttributes(typedValue.data, new int[]{R.attr.colorAccent});
         int color = a.getColor(0, 0);
 
         a.recycle();

@@ -3,7 +3,6 @@ package livroandroid.lib.utils;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
-import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,7 +21,7 @@ public class FileUtils {
      * Le da pasta /res/raw
      *
      * @param context
-     * @param raw R.raw.arquivo
+     * @param raw     R.raw.arquivo
      * @return
      */
     public static InputStream readRawFile(Context context, int raw) {
@@ -34,7 +33,7 @@ public class FileUtils {
     public static String readRawFileString(Context context, int raw, String charset) throws IOException {
         Resources resources = context.getResources();
         InputStream in = resources.openRawResource(raw);
-        return IOUtils.toString(in,charset);
+        return IOUtils.toString(in, charset);
     }
 
     /**
@@ -60,48 +59,38 @@ public class FileUtils {
 
     /**
      * Retorna o caminho do arquivo para ser salvo na memória interna.
-     *
+     * <p/>
      * Obs: Apenas retorna o caminho do arquivo, mas não o cria.
-     *
+     * <p/>
      * Ex: /data/data/br.com.livroandroid.carros/files/arquivo.txt
      *
      * @param context
      * @param name
      * @return
      */
-    public static File getPrivateFile(Context context,String name) {
+    public static File getFile(Context context, String name) {
         File file = context.getFileStreamPath(name);
         return file;
     }
 
     /**
      * Retorna o Outputstream para salvar o arquivo na memória interna.
-     *
+     * <p/>
      * Ex: /data/data/br.com.livroandroid.carros/files/arquivoi.txt
      *
      * @param context
      * @param name
      * @return
      */
-    public static OutputStream getPrivateFileOutput(Context context,String name) throws FileNotFoundException {
+    public static OutputStream getFileOutput(Context context, String name) throws FileNotFoundException {
         // Cria o arquivo e retorna o OutputStream
         FileOutputStream out = context.openFileOutput(name, Context.MODE_PRIVATE);
         return out;
     }
 
-    public static InputStream getPrivateFileInput(Context context,String name) {
-        try {
-            // Cria o arquivo e retorna o OutputStream
-            FileInputStream out = context.openFileInput(name);
-            return out;
-        } catch (FileNotFoundException e) {
-            return null;
-        }
-    }
-
     /**
      * Retorna a InputStream para ler o arquivo da memória interna.
-     *
+     * <p/>
      * Ex: /data/data/br.com.livroandroid.carros/files/arquivoi.txt
      *
      * @param context
@@ -109,8 +98,33 @@ public class FileUtils {
      * @return
      * @throws FileNotFoundException
      */
-    public static InputStream getPrivateFileInputStream(Context context,String name) throws FileNotFoundException {
-        FileInputStream in = context.openFileInput(name);
-        return  in;
+    public static InputStream getFileInput(Context context, String name) {
+        try {
+            // Cria o arquivo e retorna o OutputStream
+            FileInputStream in = context.openFileInput(name);
+            return in;
+        } catch (FileNotFoundException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Lê o arquivo da memória interna.
+     *
+     * @param context
+     * @param fileName
+     * @param charset
+     * @return
+     * @throws IOException
+     */
+    public static String readFile(Context context, String fileName, String charset) throws IOException {
+        try {
+            // Cria o arquivo e retorna o OutputStream
+            FileInputStream in = context.openFileInput(fileName);
+            String s = IOUtils.toString(in, charset);
+            return s;
+        } catch (FileNotFoundException e) {
+            return null;
+        }
     }
 }

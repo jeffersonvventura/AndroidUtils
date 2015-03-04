@@ -175,7 +175,7 @@ public class NavigationDrawerFragment extends Fragment {
     /**
      * Users of this fragment must call this method to set up the navigation drawer interactions.
      *
-     * @param drawerLayout   The DrawerLayout containing this fragment's UI.
+     * @param drawerLayout The DrawerLayout containing this fragment's UI.
      */
     public void setUp(DrawerLayout drawerLayout) {
 

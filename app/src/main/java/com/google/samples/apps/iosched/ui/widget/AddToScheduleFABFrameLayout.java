@@ -111,7 +111,7 @@ public class AddToScheduleFABFrameLayout extends CheckableFrameLayout {
         } else {
             mRevealView.setVisibility(View.GONE);
 
-            if(drawableOn == 0 || drawableOff == 0) {
+            if (drawableOn == 0 || drawableOff == 0) {
                 throw new IllegalArgumentException("Configure setDrawableOff and setDrawableOn");
             }
 
@@ -122,7 +122,7 @@ public class AddToScheduleFABFrameLayout extends CheckableFrameLayout {
         }
     }
 
-    public void setDrawableOnOff(int drawableOn,int drawableOff, int revealViewOnColorId, int revealViewOffColorId) {
+    public void setDrawableOnOff(int drawableOn, int drawableOff, int revealViewOnColorId, int revealViewOffColorId) {
         this.drawableOff = drawableOff;
         this.drawableOn = drawableOn;
         this.mRevealViewOnColor = getResources().getColor(revealViewOnColorId);

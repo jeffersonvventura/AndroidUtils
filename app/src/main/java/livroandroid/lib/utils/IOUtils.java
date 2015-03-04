@@ -1,7 +1,6 @@
 package livroandroid.lib.utils;
 
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Environment;
 import android.os.Looper;
 import android.util.Log;
@@ -21,6 +20,7 @@ public class IOUtils {
 
     /**
      * Converte a InputStream para String utilizando o charset informado
+     *
      * @param in
      * @param charset UTF-8 ou ISO-8859-1
      * @return
@@ -34,6 +34,7 @@ public class IOUtils {
 
     /**
      * Converte a InputStream para bytes[]
+     *
      * @param in
      * @return
      */
@@ -61,7 +62,7 @@ public class IOUtils {
     }
 
     public static void writeString(OutputStream out, String string) {
-        writeBytes(out,string.getBytes());
+        writeBytes(out, string.getBytes());
     }
 
     public static void writeBytes(OutputStream out, byte[] bytes) {
@@ -76,11 +77,12 @@ public class IOUtils {
 
     /**
      * Salva o texto em arquivo
+     *
      * @param file
      * @param string
      */
     public static void writeString(File file, String string) {
-        writeBytes(file,string.getBytes());
+        writeBytes(file, string.getBytes());
     }
 
     public static void writeBytes(File file, byte[] bytes) {
@@ -96,7 +98,7 @@ public class IOUtils {
 
     public static String readString(File file) {
         try {
-            if(file == null || !file.exists()) {
+            if (file == null || !file.exists()) {
                 return null;
             }
             InputStream in = new FileInputStream(file);
@@ -112,12 +114,13 @@ public class IOUtils {
 
     /**
      * Salva a figura em aruqivo
+     *
      * @param file
      * @param bitmap
      */
     public static void writeBitmap(File file, Bitmap bitmap) {
         try {
-            if(!file.exists()) {
+            if (!file.exists()) {
                 file.createNewFile();
             }
             FileOutputStream out = new FileOutputStream(file);
@@ -135,23 +138,22 @@ public class IOUtils {
     /**
      * Salva o bitmap em arquivo. Utiliza a URL para descobrir o nome.
      *
-     * @param url URL original para extrair o nome do arquivo
-     * @param bitmap Bitmap que já está em memória
+     * @param url      URL original para extrair o nome do arquivo
+     * @param bitmap   Bitmap que já está em memória
      * @param callback Interface de retorno
      */
-    public static void saveBitmapToFile(String url,Bitmap bitmap,Callback callback) {
+    public static void saveBitmapToFile(String url, Bitmap bitmap, Callback callback) {
         try {
-            if(url == null || bitmap == null && callback != null) {
+            if (url == null || bitmap == null && callback != null) {
                 return;
             }
 
             String fileName = url.substring(url.lastIndexOf("/"));
 
             File file = SDCardUtils.getPublicFile(fileName, Environment.DIRECTORY_PICTURES);
-            if(file.exists()) {
-                callback.onFileSaved(file,true);
-            }
-            else {
+            if (file.exists()) {
+                callback.onFileSaved(file, true);
+            } else {
                 FileOutputStream out = new FileOutputStream(file);
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
                 out.close();
@@ -161,7 +163,7 @@ public class IOUtils {
                 // Salva o arquivo
                 IOUtils.writeBitmap(file, bitmap);
 
-                callback.onFileSaved(file,false);
+                callback.onFileSaved(file, false);
             }
         } catch (IOException e) {
             Log.e(TAG, e.getMessage(), e);
@@ -173,7 +175,7 @@ public class IOUtils {
             InputStream in = new URL(url).openStream();
             byte[] bytes = IOUtils.toBytes(in);
             IOUtils.writeBytes(file, bytes);
-            Log.d(TAG,"downloadToFile: " + file);
+            Log.d(TAG, "downloadToFile: " + file);
             return true;
         } catch (IOException e) {
             Log.e(TAG, e.getMessage(), e);
@@ -182,7 +184,7 @@ public class IOUtils {
     }
 
     public static void checkMainThread() {
-        if(Looper.myLooper() == Looper.getMainLooper()) {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
             throw new RuntimeException("Qualquer operação de I/O não pode ser executado na UI Thread.");
         }
     }

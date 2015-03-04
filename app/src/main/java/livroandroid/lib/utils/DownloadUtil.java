@@ -1,7 +1,6 @@
 package livroandroid.lib.utils;
 
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Environment;
 import android.os.Looper;
 import android.util.Log;
@@ -22,22 +21,23 @@ public class DownloadUtil {
 
     /**
      * Faz o download da URL e salva em arquivo
-     *  @param bitmap
+     *
+     * @param bitmap
      * @param url
      */
-    public static void saveBitmapToFile(Bitmap bitmap, String url,Callback callback) {
-        if(Looper.myLooper() == Looper.getMainLooper()) {
+    public static void saveBitmapToFile(Bitmap bitmap, String url, Callback callback) {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
             throw new RuntimeException("O método saveBitmapToFile não pode ser executado na UI Thread.");
         }
         try {
-            if(url == null || bitmap == null) {
+            if (url == null || bitmap == null) {
                 return;
             }
 
             String fileName = url.substring(url.lastIndexOf("/"));
 
             File file = SDCardUtils.getPublicFile(fileName, Environment.DIRECTORY_PICTURES);
-            if(!file.exists()) {
+            if (!file.exists()) {
                 FileOutputStream out = new FileOutputStream(file);
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
                 out.close();
@@ -47,8 +47,8 @@ public class DownloadUtil {
                 // Salva o arquivo
                 IOUtils.writeBitmap(file, bitmap);
 
-                if(callback != null) {
-                    callback.onDownlodCompleted(url,file);
+                if (callback != null) {
+                    callback.onDownlodCompleted(url, file);
                 }
             }
 

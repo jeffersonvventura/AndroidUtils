@@ -62,7 +62,6 @@ public class NavigationDrawerFragmentV1 extends Fragment {
     private boolean mUserLearnedDrawer;
 
 
-
     public NavigationDrawerFragmentV1() {
     }
 
@@ -108,7 +107,7 @@ public class NavigationDrawerFragmentV1 extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     log("listView.onItemClick: " + position);
-                    selectItem(position,true);
+                    selectItem(position, true);
                 }
             });
 

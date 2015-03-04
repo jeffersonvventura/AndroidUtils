@@ -4,7 +4,7 @@
         <attr name="insetForeground" format="reference|color" />
     </declare-styleable>
 
-    <attr name="fontPath" format="string"/>
+    <attr name="fontPath" format="string" />
 
     <declare-styleable name="CircularImageView">
         <attr name="border" format="boolean"></attr>

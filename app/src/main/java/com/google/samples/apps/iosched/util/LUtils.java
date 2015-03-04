@@ -100,7 +100,7 @@ public class LUtils {
     public void setOrAnimatePlusCheckIcon(final ImageView imageView, boolean isCheck,
                                           boolean allowAnimate, int colorFilterWhenChecked, int drawableId, int button_icon_checkedId, int button_icon_uncheckedId) {
         if (!hasL()) {
-            compatSetOrAnimatePlusCheckIcon(imageView, isCheck, allowAnimate,button_icon_checkedId,button_icon_uncheckedId);
+            compatSetOrAnimatePlusCheckIcon(imageView, isCheck, allowAnimate, button_icon_checkedId, button_icon_uncheckedId);
             return;
         }
 
