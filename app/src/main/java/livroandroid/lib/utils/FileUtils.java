@@ -22,7 +22,7 @@ public class FileUtils {
      *
      * @param context
      * @param raw     R.raw.arquivo
-     * @return
+     * @return InputStream
      */
     public static InputStream readRawFile(Context context, int raw) {
         Resources resources = context.getResources();
@@ -41,7 +41,7 @@ public class FileUtils {
      *
      * @param context
      * @param fileName nome do arquivo
-     * @return
+     * @return InputStream
      * @throws IOException
      */
     public static InputStream readAssetsFile(Context context, String fileName) throws IOException {
@@ -66,7 +66,7 @@ public class FileUtils {
      *
      * @param context
      * @param name
-     * @return
+     * @return File
      */
     public static File getFile(Context context, String name) {
         File file = context.getFileStreamPath(name);
@@ -80,7 +80,7 @@ public class FileUtils {
      *
      * @param context
      * @param name
-     * @return
+     * @return OutputStream
      */
     public static OutputStream getFileOutput(Context context, String name) throws FileNotFoundException {
         // Cria o arquivo e retorna o OutputStream
@@ -95,7 +95,7 @@ public class FileUtils {
      *
      * @param context
      * @param name
-     * @return
+     * @return InputStream
      * @throws FileNotFoundException
      */
     public static InputStream getFileInput(Context context, String name) {
@@ -114,7 +114,7 @@ public class FileUtils {
      * @param context
      * @param fileName
      * @param charset
-     * @return
+     * @return String
      * @throws IOException
      */
     public static String readFile(Context context, String fileName, String charset) throws IOException {

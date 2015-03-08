@@ -129,10 +129,6 @@ public class HttpHelper {
 
     /**
      * Retorna a QueryString para 'GET'
-     *
-     * @param params
-     * @return
-     * @throws java.io.IOException
      */
     public static String getQueryString(Map<String, String> params, String charsetToEncode) throws IOException {
         if (params == null || params.size() == 0) {
@@ -151,11 +147,6 @@ public class HttpHelper {
             }
         }
         return urlParams;
-
-    }
-
-    public static void bingo3() {
-
 
     }
 }
