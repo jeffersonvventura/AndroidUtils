@@ -90,10 +90,6 @@ public class AndroidUtils {
 
     /**
      * Converte de DIP para Pixels
-     *
-     * @param context
-     * @param dip
-     * @return
      */
     public static float toPixels(Context context, float dip) {
         Resources r = context.getResources();
@@ -107,9 +103,6 @@ public class AndroidUtils {
 
     /**
      * Converte de Pixels para DIP
-     *
-     * @param context
-     * @return
      */
     public static float toDip(Context context, float pixels) {
         Resources r = context.getResources();
@@ -125,7 +118,6 @@ public class AndroidUtils {
      *
      * @param context getActionBar().getThemedContext()
      * @param attrId  android.R.attr.selectableItemBackground
-     * @return
      */
     public Drawable getDrawableAttr(Context context, int attrId) {
         int[] attrs = new int[]{attrId};
