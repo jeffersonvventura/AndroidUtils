@@ -40,4 +40,10 @@ public class AlarmUtil {
 
         Log.d(TAG, "Alarme agendado com sucesso.");
     }
+
+    public static void cancel(Context context, Intent intent) {
+        AlarmManager alarme = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        PendingIntent p = PendingIntent.getBroadcast(context, 0, intent, 0);
+        alarme.cancel(p);
+    }
 }
