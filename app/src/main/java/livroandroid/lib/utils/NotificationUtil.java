@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import br.com.livroandroid.androidutils.R;
@@ -37,5 +38,15 @@ public class NotificationUtil {
         manager.notify(id, n);
 
         Log.d(TAG,"Notification criada com sucesso");
+    }
+
+    public static void cancell(Context context, int id) {
+        NotificationManagerCompat nm = NotificationManagerCompat.from(context);
+        nm.cancel(id);
+    }
+
+    public static void cancellAll(Context context) {
+        NotificationManagerCompat nm = NotificationManagerCompat.from(context);
+        nm.cancelAll();
     }
 }

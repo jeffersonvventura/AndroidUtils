@@ -11,7 +11,7 @@ import java.io.IOException;
 
 /**
  * Faz o resize de uma imagem de forma eficiente
- * <p/>
+ *
  * http://developer.android.com/training/displaying-bitmaps/load-bitmap.html
  *
  * @author Ricardo Lecheta
