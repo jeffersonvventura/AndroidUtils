@@ -36,6 +36,8 @@ public class HttpHelper {
         try {
             conn = (HttpURLConnection) u.openConnection();
             conn.setRequestMethod("GET");
+            conn.setConnectTimeout(10000);
+            conn.setReadTimeout(10000);
             conn.setDoOutput(true);
             conn.setDoInput(true);
             conn.connect();
@@ -76,6 +78,8 @@ public class HttpHelper {
         try {
             conn = (HttpURLConnection) u.openConnection();
             conn.setRequestMethod("POST");
+            conn.setConnectTimeout(10000);
+            conn.setReadTimeout(10000);
             conn.setDoOutput(true);
             conn.setDoInput(true);
             conn.connect();
@@ -110,6 +114,8 @@ public class HttpHelper {
         URL u = new URL(url);
         HttpURLConnection conn = (HttpURLConnection) u.openConnection();
         conn.setRequestMethod("GET");
+        conn.setConnectTimeout(10000);
+        conn.setReadTimeout(10000);
         conn.setDoOutput(true);
         conn.setDoInput(true);
         conn.connect();
