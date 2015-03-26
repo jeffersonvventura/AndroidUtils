@@ -20,8 +20,6 @@ public class FileUtils {
     /**
      * Le da pasta /res/raw
      *
-     * @param context
-     * @param raw     R.raw.arquivo
      * @return InputStream
      */
     public static InputStream readRawFile(Context context, int raw) {
@@ -37,10 +35,8 @@ public class FileUtils {
     }
 
     /**
-     * Le da pasta assets
+     * Le o arquivo da pasta assets
      *
-     * @param context
-     * @param fileName nome do arquivo
      * @return InputStream
      * @throws IOException
      */
@@ -59,14 +55,10 @@ public class FileUtils {
 
     /**
      * Retorna o caminho do arquivo para ser salvo na memória interna.
-     * <p/>
-     * Obs: Apenas retorna o caminho do arquivo, mas não o cria.
-     * <p/>
-     * Ex: /data/data/br.com.livroandroid.carros/files/arquivo.txt
      *
-     * @param context
-     * @param name
-     * @return File
+     * Obs: Apenas retorna o caminho do arquivo, mas não o cria.
+     *
+     * Ex: /data/data/br.com.livroandroid.carros/files/arquivo.txt
      */
     public static File getFile(Context context, String name) {
         File file = context.getFileStreamPath(name);
@@ -75,12 +67,8 @@ public class FileUtils {
 
     /**
      * Retorna o Outputstream para salvar o arquivo na memória interna.
-     * <p/>
-     * Ex: /data/data/br.com.livroandroid.carros/files/arquivoi.txt
      *
-     * @param context
-     * @param name
-     * @return OutputStream
+     * Ex: /data/data/br.com.livroandroid.carros/files/arquivoi.txt
      */
     public static OutputStream getFileOutput(Context context, String name) throws FileNotFoundException {
         // Cria o arquivo e retorna o OutputStream
@@ -90,13 +78,8 @@ public class FileUtils {
 
     /**
      * Retorna a InputStream para ler o arquivo da memória interna.
-     * <p/>
-     * Ex: /data/data/br.com.livroandroid.carros/files/arquivoi.txt
      *
-     * @param context
-     * @param name
-     * @return InputStream
-     * @throws FileNotFoundException
+     * Ex: /data/data/br.com.livroandroid.carros/files/arquivoi.txt
      */
     public static InputStream getFileInput(Context context, String name) {
         try {
@@ -111,11 +94,6 @@ public class FileUtils {
     /**
      * Lê o arquivo da memória interna.
      *
-     * @param context
-     * @param fileName
-     * @param charset
-     * @return String
-     * @throws IOException
      */
     public static String readFile(Context context, String fileName, String charset) throws IOException {
         try {
