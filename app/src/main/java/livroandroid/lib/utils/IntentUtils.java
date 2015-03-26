@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.text.Html;
 import android.util.Log;
 
 import java.util.List;
@@ -42,5 +43,15 @@ public class IntentUtils {
         final PackageManager mgr = context.getPackageManager();
         List<ResolveInfo> list = mgr.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
         return list.size() > 0;
+    }
+
+    public static void sendEmail(Context context, String toEmail, String subject, String message) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setType("plain/text");// message/rfc822
+        intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { toEmail });
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(message));
+        context.startActivity(intent);
     }
 }
