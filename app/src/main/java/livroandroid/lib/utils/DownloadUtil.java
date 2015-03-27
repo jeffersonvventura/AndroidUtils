@@ -21,9 +21,6 @@ public class DownloadUtil {
 
     /**
      * Faz o download da URL e salva em arquivo
-     *
-     * @param bitmap
-     * @param url
      */
     public static void saveBitmapToFile(Bitmap bitmap, String url, Callback callback) {
         if (Looper.myLooper() == Looper.getMainLooper()) {
