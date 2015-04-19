@@ -36,6 +36,8 @@ public class FileUtils {
 
     /**
      * Le o arquivo da pasta assets
+     *`
+     *
      *
      * @return InputStream
      * @throws IOException
