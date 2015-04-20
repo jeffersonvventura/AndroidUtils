@@ -40,6 +40,25 @@ public class NotificationUtil {
         Log.d(TAG,"Notification criada com sucesso");
     }
 
+    // Notificação simples sem abrir intent (usada para alertas, ex: no wear)
+    public static void create(Context context, int smallIcon, String contentTitle, String contentText) {
+        NotificationManager manager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Cria a notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+                .setContentTitle(contentTitle)
+                .setContentText(contentText)
+                .setSmallIcon(smallIcon)
+                .setAutoCancel(true);
+
+        // Dispara a notification
+        Notification n = builder.build();
+        manager.notify(0, n);
+
+        Log.d(TAG,"Notification criada com sucesso");
+    }
+
     public static void cancell(Context context, int id) {
         NotificationManagerCompat nm = NotificationManagerCompat.from(context);
         nm.cancel(id);
