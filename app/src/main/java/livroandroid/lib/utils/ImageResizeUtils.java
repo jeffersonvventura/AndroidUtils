@@ -1,5 +1,6 @@
 package livroandroid.lib.utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -19,6 +20,43 @@ import java.io.IOException;
 public class ImageResizeUtils {
 
     private static final String TAG = ImageResizeUtils.class.getName();
+
+    public static Bitmap getResizedImageResource(Context context,int resImgId, int width, int height) {
+        try {
+            // Configura o BitmapFactory para apenas ler o tamanho da imagem (sem carregá-la em memória)
+            BitmapFactory.Options opts = new BitmapFactory.Options();
+            opts.inJustDecodeBounds = true;
+            // Faz o decode da imagem
+            BitmapFactory.decodeResource(context.getResources(), resImgId, opts);
+            // Lê a largura e altura do arquivo
+            int w = opts.outWidth;
+            int h = opts.outHeight;
+
+            if (width == 0 || height == 0) {
+                width = w / 2;
+                height = h / 2;
+            }
+
+            Log.d(TAG, "Resize img, w:" + w + " / h:" + h + ", to w:" + width + " / h:" + height);
+
+            // Fator de escala
+            int scaleFactor = Math.min(w / width, h / height);
+            opts.inSampleSize = scaleFactor;
+            Log.d(TAG, "inSampleSize:" + opts.inSampleSize);
+            // Agora deixa carregar o bitmap completo
+            opts.inJustDecodeBounds = false;
+
+            Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resImgId, opts);
+
+            Log.d(TAG, "Resize OK, w:" + bitmap.getWidth() + " / h:" + bitmap.getHeight());
+
+            return bitmap;
+
+        } catch (RuntimeException e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+        return null;
+    }
 
     public static Bitmap getResizedImage(Uri uriFile, int width, int height) {
         return getResizedImage(uriFile, width, height, false);
