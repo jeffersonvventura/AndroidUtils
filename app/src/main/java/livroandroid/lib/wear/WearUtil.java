@@ -16,6 +16,7 @@ import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -102,10 +103,11 @@ public class WearUtil {
     }
 
     // Envia dados com a Data API
-    public void sendData(String path,Bundle bundle) {
+    public void putData(String path,Bundle bundle) {
         Log.d(TAG, ">> sendData() " + path);
         PutDataMapRequest putDataMapReq = PutDataMapRequest.create(path);
         DataMap dataMap = DataMap.fromBundle(bundle);
+        dataMap.putLong("time", new Date().getTime());
         putDataMapReq.getDataMap().putAll(dataMap);
         PutDataRequest putDataReq = putDataMapReq.asPutDataRequest();
         Wearable.DataApi.putDataItem(mGoogleApiClient, putDataReq);
@@ -135,5 +137,9 @@ public class WearUtil {
                     }
                 }
         );
+    }
+
+    public GoogleApiClient getGoogleApiClient() {
+        return mGoogleApiClient;
     }
 }
