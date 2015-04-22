@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -272,11 +273,11 @@ public abstract class BaseFragment extends DebugFragment {
     }
 
     public android.support.v7.app.ActionBar getActionBar() {
-        ActionBarActivity ac = getActionBarActivity();
+        AppCompatActivity ac = getAppCompatActivity();
         return ac.getSupportActionBar();
     }
 
-    public ActionBarActivity getActionBarActivity() {
-        return (ActionBarActivity) getActivity();
+    public AppCompatActivity getAppCompatActivity() {
+        return (AppCompatActivity) getActivity();
     }
 }
