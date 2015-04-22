@@ -40,6 +40,29 @@ public class NotificationUtil {
         Log.d(TAG,"Notification criada com sucesso");
     }
 
+    public static void createStackNotification(Context context, int id,String groupId, Intent intent,int smallIcon, String contentTitle, String contentText) {
+        NotificationManager manager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Intent para disparar o broadcast
+        PendingIntent p = intent != null ? PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT) : null;
+
+        // Cria a notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+                .setContentIntent(p)
+                .setContentTitle(contentTitle)
+                .setContentText(contentText)
+                .setSmallIcon(smallIcon)
+                .setGroup(groupId)
+                .setAutoCancel(true);
+
+        // Dispara a notification
+        Notification n = builder.build();
+        manager.notify(id, n);
+
+        Log.d(TAG,"Notification criada com sucesso");
+    }
+
     // Notificação simples sem abrir intent (usada para alertas, ex: no wear)
     public static void create(Context context, int smallIcon, String contentTitle, String contentText) {
         NotificationManager manager =

@@ -1,12 +1,15 @@
 package livroandroid.lib.wear;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.wearable.Asset;
 import com.google.android.gms.wearable.DataApi;
 import com.google.android.gms.wearable.DataMap;
 import com.google.android.gms.wearable.MessageApi;
@@ -16,6 +19,9 @@ import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -102,10 +108,11 @@ public class WearUtil {
     }
 
     // Envia dados com a Data API
-    public void sendData(String path,Bundle bundle) {
+    public void putData(String path,Bundle bundle) {
         Log.d(TAG, ">> sendData() " + path);
         PutDataMapRequest putDataMapReq = PutDataMapRequest.create(path);
         DataMap dataMap = DataMap.fromBundle(bundle);
+        dataMap.putLong("time", new Date().getTime());
         putDataMapReq.getDataMap().putAll(dataMap);
         PutDataRequest putDataReq = putDataMapReq.asPutDataRequest();
         Wearable.DataApi.putDataItem(mGoogleApiClient, putDataReq);
@@ -135,5 +142,27 @@ public class WearUtil {
                     }
                 }
         );
+    }
+
+    // Cria um Assert a partir de um Bitmap
+    public Asset getAssetFromBitmap(Bitmap bitmap) {
+        final ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteStream);
+        return Asset.createFromBytes(byteStream.toByteArray());
+    }
+
+    public Bitmap getBitmapFromAsset(Asset asset) {
+        if (asset == null) {
+            return null;
+        }
+        // convert asset into a file descriptor and block until it's ready
+        InputStream in = Wearable.DataApi.getFdForAsset(
+                mGoogleApiClient, asset).await().getInputStream();
+        Bitmap bitmap = BitmapFactory.decodeStream(in);
+        return bitmap;
+    }
+
+    public GoogleApiClient getGoogleApiClient() {
+        return mGoogleApiClient;
     }
 }
