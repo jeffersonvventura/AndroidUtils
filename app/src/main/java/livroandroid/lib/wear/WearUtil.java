@@ -155,7 +155,6 @@ public class WearUtil {
         if (asset == null) {
             return null;
         }
-        // convert asset into a file descriptor and block until it's ready
         InputStream in = Wearable.DataApi.getFdForAsset(
                 mGoogleApiClient, asset).await().getInputStream();
         Bitmap bitmap = BitmapFactory.decodeStream(in);
