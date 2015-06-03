@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ScrimInsetsView">
-        <attr name="insetForeground" format="reference|color" />
+        <attr name="ScrimInsetsViewInsetForeground" format="reference|color" />
     </declare-styleable>
 
     <attr name="fontPath" format="string" />
