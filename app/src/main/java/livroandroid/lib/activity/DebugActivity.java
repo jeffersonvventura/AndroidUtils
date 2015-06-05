@@ -1,13 +1,12 @@
 package livroandroid.lib.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 
 /**
  * Created by Ricardo Lecheta on 22/09/2014.
  */
-public class DebugActivity extends ActionBarActivity {
+public class DebugActivity extends android.support.v7.app.AppCompatActivity {
     protected static final String TAG = "livroandroid";
 
     @Override
